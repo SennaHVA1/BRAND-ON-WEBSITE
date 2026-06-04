@@ -92,8 +92,8 @@
             <input type="text" id="f-contact">
           </div>
           <div class="field">
-            <label for="f-value">Geschatte waarde (€)</label>
-            <input type="number" id="f-value" min="0" step="50" placeholder="0">
+            <label for="f-owner">Toegewezen aan</label>
+            <select id="f-owner"></select>
           </div>
         </div>
         <div class="field-row">
@@ -111,8 +111,8 @@
           <input type="text" id="f-website" placeholder="www.voorbeeld.nl">
         </div>
         <div class="field">
-          <label for="f-notes">Notities</label>
-          <textarea id="f-notes" placeholder="Bv. 'Oude site uit 2014, geen mobiel. Bellen na 14:00.'"></textarea>
+          <label for="f-notes">Omschrijving / notitie</label>
+          <textarea id="f-notes" placeholder="Bv. 'Oude site uit 2014, geen mobiel.'"></textarea>
         </div>
         <div class="modal-actions">
           <button type="button" class="btn btn--ghost" id="deleteLeadBtn" hidden><span>Verwijderen</span></button>
@@ -122,6 +122,18 @@
           </div>
         </div>
       </form>
+
+      <!-- Activiteiten-tijdlijn (alleen bij bestaande lead) -->
+      <section class="activity" id="activitySection" hidden>
+        <h3 class="activity-title">Activiteiten</h3>
+        <p class="activity-sub">Leg vast wie wat heeft gedaan — automatisch met datum en tijd.</p>
+        <div class="action-bar">
+          <select id="actType" aria-label="Soort actie"></select>
+          <input type="text" id="actText" placeholder="Details (optioneel)…" autocomplete="off">
+          <button type="button" class="btn" id="actAdd"><span>Toevoegen</span></button>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </section>
     </div>
   </div>
 

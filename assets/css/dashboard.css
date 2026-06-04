@@ -169,6 +169,36 @@ body.modal-lock { overflow: hidden; }
 #deleteLeadBtn::after { background: #9a2020; }
 #deleteLeadBtn:hover { color: #fff; }
 
+/* ---------- Eigenaar (toegewezen aan) ---------- */
+.lead-meta-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.owner-chip { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: 5px 10px; }
+.owner-chip .who-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); flex-shrink: 0; }
+.owner-chip.is-senna { color: var(--navy); } .owner-chip.is-senna .who-dot { background: #2f7bff; }
+.owner-chip.is-jaimy { color: var(--navy); } .owner-chip.is-jaimy .who-dot { background: #1f9d57; }
+
+.lead-foot-meta { flex: 1; min-width: 0; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); line-height: 1.45; }
+
+/* ============================================================
+   ACTIVITEITEN-TIJDLIJN (in de modal)
+   ============================================================ */
+.activity { border-top: 1px solid var(--line); padding: clamp(22px,4vw,34px); background: var(--tint-2); }
+.activity-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+.activity-sub { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
+.action-bar { display: flex; gap: 8px; margin: 18px 0 22px; flex-wrap: wrap; }
+.action-bar select, .action-bar input { padding: 12px 14px; border: 1px solid var(--line-strong); background: #fff; }
+.action-bar input { flex: 1; min-width: 160px; }
+.action-bar select:focus, .action-bar input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(0,34,80,0.08); }
+.action-bar .btn { width: auto; }
+
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline .tl-empty { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); padding: 8px 0; }
+.tl-item { display: grid; grid-template-columns: 32px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.tl-item:last-child { border-bottom: 0; }
+.tl-dot { width: 32px; height: 32px; border: 1px solid var(--line-strong); display: grid; place-items: center; color: var(--navy); background: #fff; }
+.tl-type { font-weight: 600; font-size: 0.95rem; }
+.tl-text { color: var(--muted); font-size: 0.9rem; margin-top: 3px; word-break: break-word; }
+.tl-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+
 /* ============================================================
    TOAST
    ============================================================ */

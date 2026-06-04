@@ -8,7 +8,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
   collection, addDoc, updateDoc, deleteDoc, doc,
-  onSnapshot, query, orderBy, serverTimestamp
+  onSnapshot, query, orderBy, serverTimestamp, arrayUnion
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 /* ---------- Pipeline statussen ---------- */
@@ -21,11 +21,55 @@ const STATUSES = [
 ];
 const STATUS_LABEL = Object.fromEntries(STATUSES.map((s) => [s.key, s.label]));
 
+/* ---------- Team (toewijzen aan) ---------- */
+const TEAM = [
+  { id: "senna", name: "Senna", email: "sennahogendoorn2005@gmail.com" },
+  { id: "jaimy", name: "Jaimy", email: "producedbyjaimy@gmail.com" }
+];
+function ownerName(id) { const m = TEAM.find((t) => t.id === id); return m ? m.name : ""; }
+function nameFromEmail(email) {
+  const m = TEAM.find((t) => t.email.toLowerCase() === (email || "").toLowerCase());
+  return m ? m.name : (email || "Onbekend");
+}
+function meName() { return nameFromEmail(auth.currentUser && auth.currentUser.email); }
+function myDefaultOwner() {
+  const m = TEAM.find((t) => t.email.toLowerCase() === ((auth.currentUser && auth.currentUser.email) || "").toLowerCase());
+  return m ? m.id : "";
+}
+
+/* ---------- Soorten acties (handmatig toe te voegen) ---------- */
+const ACTION_TYPES = [
+  { key: "notitie",  label: "Notitie" },
+  { key: "gebeld",   label: "Gebeld" },
+  { key: "bezoek",   label: "Locatie bezoek" },
+  { key: "email",    label: "E-mail gestuurd" },
+  { key: "afspraak", label: "Afspraak" }
+];
+/* Labels voor alle activiteitstypes (incl. automatische) */
+const ACT_LABEL = {
+  aangemaakt: "Aangemaakt", bewerkt: "Bijgewerkt", status: "Status gewijzigd",
+  toewijzing: "Toegewezen", notitie: "Notitie", gebeld: "Gebeld",
+  bezoek: "Locatie bezoek", email: "E-mail gestuurd", afspraak: "Afspraak"
+};
+/* Icoon-paths per type */
+const ACT_ICON = {
+  aangemaakt: '<path d="M12 5v14M5 12h14"/>',
+  bewerkt:    '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  status:     '<path d="M4 4v16"/><path d="M4 5h11l-1.5 3L15 11H4"/>',
+  toewijzing: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>',
+  notitie:    '<path d="M5 4h11l3 3v13H5z"/><path d="M9 9h6M9 13h6M9 17h3"/>',
+  gebeld:     '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+  bezoek:     '<path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+  email:      '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/>',
+  afspraak:   '<rect x="3" y="4" width="18" height="17" rx="1"/><path d="M3 9h18M8 2v4M16 2v4"/>'
+};
+
 /* ---------- State ---------- */
 let leads = [];
 let activeFilter = "alles";
 let searchTerm = "";
 let unsubscribe = null;
+let openLeadId = null; // id van lead die in de modal bewerkt wordt
 
 /* ---------- Elements ---------- */
 const $ = (id) => document.getElementById(id);
@@ -44,6 +88,8 @@ const modal = $("modal");
 const leadForm = $("leadForm");
 const modalTitle = $("modalTitle");
 const deleteLeadBtn = $("deleteLeadBtn");
+const activitySection = $("activitySection");
+const timelineEl = $("timeline");
 
 /* ===================================================================
    AUTH GUARD
@@ -86,24 +132,20 @@ function render() {
   renderStats();
   renderTabs();
   renderLeads();
+  // Tijdlijn live bijwerken als de modal openstaat
+  if (openLeadId) {
+    const lead = leads.find((l) => l.id === openLeadId);
+    if (lead) renderTimeline(lead);
+  }
 }
 
 function renderStats() {
-  const counts = { totaal: leads.length };
-  STATUSES.forEach((s) => { counts[s.key] = leads.filter((l) => l.status === s.key).length; });
-  // Pijplijn-waarde = alles wat nog open staat (niet klant/verloren)
-  const pipeline = leads
-    .filter((l) => l.status !== "klant" && l.status !== "verloren")
-    .reduce((sum, l) => sum + (Number(l.value) || 0), 0);
-  const klantWaarde = leads
-    .filter((l) => l.status === "klant")
-    .reduce((sum, l) => sum + (Number(l.value) || 0), 0);
-
+  const open = leads.filter((l) => l.status !== "klant" && l.status !== "verloren").length;
   const cards = [
-    { label: "Totaal leads", value: counts.totaal },
-    { label: "Open pijplijn", value: euro(pipeline) },
-    { label: "Klanten", value: counts.klant },
-    { label: "Omzet uit klanten", value: euro(klantWaarde) }
+    { label: "Totaal leads", value: leads.length },
+    { label: "Open in pipeline", value: open },
+    { label: "Klanten", value: leads.filter((l) => l.status === "klant").length },
+    { label: "Verloren", value: leads.filter((l) => l.status === "verloren").length }
   ];
   statsEl.innerHTML = cards.map((c) => `
     <div class="stat">
@@ -129,7 +171,7 @@ function filteredLeads() {
   return leads.filter((l) => {
     if (activeFilter !== "alles" && l.status !== activeFilter) return false;
     if (!term) return true;
-    return [l.company, l.contactName, l.email, l.phone, l.website, l.notes]
+    return [l.company, l.contactName, l.email, l.phone, l.website, l.notes, ownerName(l.owner)]
       .filter(Boolean).join(" ").toLowerCase().includes(term);
   });
 }
@@ -148,6 +190,13 @@ function renderLeads() {
   leadsEl.innerHTML = list.map(leadCard).join("");
 }
 
+function lastActivity(l) {
+  if (Array.isArray(l.activities) && l.activities.length) {
+    return l.activities.reduce((a, b) => (b.at > a.at ? b : a));
+  }
+  return null;
+}
+
 function leadCard(l) {
   const status = l.status || "nieuw";
   const contact = [
@@ -155,6 +204,14 @@ function leadCard(l) {
     contactRow("phone", "Telefoon", l.phone, "tel:" + ((l.phone || "").replace(/\s/g, ""))),
     contactRow("website", "Website", l.website, websiteHref(l.website))
   ].filter(Boolean).join("");
+
+  const owner = l.owner
+    ? `<span class="owner-chip is-${l.owner}"><span class="who-dot"></span>${esc(ownerName(l.owner))}</span>`
+    : `<span class="owner-chip is-none"><span class="who-dot"></span>Niet toegewezen</span>`;
+  const la = lastActivity(l);
+  const footMeta = la
+    ? `${ACT_LABEL[la.type] || "Activiteit"} · ${esc(la.by || "")} · ${fmtDateTime(la.at)}`
+    : (l.updatedAt ? "Bijgewerkt · " + fmtDateTime(l.updatedAt) : "");
 
   return `
   <article class="lead-card" data-id="${l.id}">
@@ -168,16 +225,15 @@ function leadCard(l) {
       </select>
     </div>
 
+    <div class="lead-meta-row">${owner}</div>
+
     <div class="lead-contacts">${contact || `<div class="lead-empty-row">Geen contactgegevens</div>`}</div>
 
     ${l.notes ? `<p class="lead-notes">${esc(l.notes)}</p>` : ""}
 
     <div class="lead-foot">
-      <span class="lead-value">${(Number(l.value) > 0) ? euro(Number(l.value)) : "—"}</span>
-      <div class="lead-foot-right">
-        <span class="lead-date">${fmtDate(l.updatedAt)}</span>
-        <button class="text-btn" data-edit aria-label="Bewerken">Bewerk</button>
-      </div>
+      <span class="lead-foot-meta">${footMeta}</span>
+      <button class="text-btn" data-edit aria-label="Openen">Openen</button>
     </div>
   </article>`;
 }
@@ -199,6 +255,27 @@ function contactRow(type, label, value, href) {
         <svg class="ic-check" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg>
       </button>
     </div>`;
+}
+
+/* ---------- Tijdlijn (in de modal) ---------- */
+function renderTimeline(lead) {
+  const acts = Array.isArray(lead.activities) ? lead.activities.slice() : [];
+  acts.sort((a, b) => (b.at || 0) - (a.at || 0)); // nieuwste bovenaan
+  if (!acts.length) {
+    timelineEl.innerHTML = `<li class="tl-empty">Nog geen activiteiten.</li>`;
+    return;
+  }
+  timelineEl.innerHTML = acts.map((a) => `
+    <li class="tl-item">
+      <span class="tl-dot" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ACT_ICON[a.type] || ACT_ICON.notitie}</svg>
+      </span>
+      <div class="tl-body">
+        <span class="tl-type">${esc(ACT_LABEL[a.type] || "Activiteit")}</span>
+        ${a.text ? `<div class="tl-text">${esc(a.text)}</div>` : ""}
+        <div class="tl-meta">${esc(a.by || "")} · ${fmtDateTime(a.at)}</div>
+      </div>
+    </li>`).join("");
 }
 
 /* ===================================================================
@@ -232,8 +309,14 @@ leadsEl.addEventListener("change", async (e) => {
   const sel = e.target.closest("[data-status-select]");
   if (!sel) return;
   const id = sel.closest(".lead-card").dataset.id;
+  const lead = leads.find((l) => l.id === id);
+  const oldStatus = lead ? lead.status : "";
   try {
-    await updateDoc(doc(db, "leads", id), { status: sel.value, updatedAt: serverTimestamp() });
+    await updateDoc(doc(db, "leads", id), {
+      status: sel.value,
+      updatedAt: serverTimestamp(),
+      activities: arrayUnion(mkActivity("status", `${STATUS_LABEL[oldStatus] || oldStatus || "?"} → ${STATUS_LABEL[sel.value]}`))
+    });
     showToast("Status bijgewerkt.");
   } catch (err) {
     console.error(err);
@@ -251,11 +334,8 @@ async function copyValue(btn) {
       await navigator.clipboard.writeText(text);
     } else {
       const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
       document.execCommand("copy");
       document.body.removeChild(ta);
     }
@@ -270,25 +350,31 @@ async function copyValue(btn) {
 /* ===================================================================
    MODAL — toevoegen / bewerken
    =================================================================== */
-function buildStatusSelect() {
-  const sel = $("f-status");
-  sel.innerHTML = STATUSES.map((s) => `<option value="${s.key}">${s.label}</option>`).join("");
-}
-buildStatusSelect();
+(function buildSelects() {
+  $("f-status").innerHTML = STATUSES.map((s) => `<option value="${s.key}">${s.label}</option>`).join("");
+  $("f-owner").innerHTML = `<option value="">Niet toegewezen</option>` +
+    TEAM.map((t) => `<option value="${t.id}">${t.name}</option>`).join("");
+  $("actType").innerHTML = ACTION_TYPES.map((a) => `<option value="${a.key}">${a.label}</option>`).join("");
+})();
 
 function openModal(lead) {
   const editing = !!lead;
-  modalTitle.textContent = editing ? "Lead bewerken" : "Nieuwe lead";
+  openLeadId = editing ? lead.id : null;
+  modalTitle.textContent = editing ? (lead.company || "Lead bewerken") : "Nieuwe lead";
   $("leadId").value = editing ? lead.id : "";
   $("f-company").value = editing ? (lead.company || "") : "";
   $("f-contact").value = editing ? (lead.contactName || "") : "";
   $("f-email").value = editing ? (lead.email || "") : "";
   $("f-phone").value = editing ? (lead.phone || "") : "";
   $("f-website").value = editing ? (lead.website || "") : "";
-  $("f-value").value = editing && lead.value ? lead.value : "";
   $("f-notes").value = editing ? (lead.notes || "") : "";
   $("f-status").value = editing ? (lead.status || "nieuw") : "nieuw";
+  $("f-owner").value = editing ? (lead.owner || "") : myDefaultOwner();
   deleteLeadBtn.hidden = !editing;
+
+  // Activiteiten alleen bij bestaande lead
+  activitySection.hidden = !editing;
+  if (editing) { $("actText").value = ""; renderTimeline(lead); }
 
   modal.hidden = false;
   document.body.classList.add("modal-lock");
@@ -297,6 +383,7 @@ function openModal(lead) {
 
 function closeModal() {
   modal.hidden = true;
+  openLeadId = null;
   document.body.classList.remove("modal-lock");
   leadForm.reset();
 }
@@ -308,29 +395,36 @@ document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.h
 leadForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const id = $("leadId").value;
-  const data = {
+  const fields = {
     company: $("f-company").value.trim(),
     contactName: $("f-contact").value.trim(),
     email: $("f-email").value.trim(),
     phone: $("f-phone").value.trim(),
     website: $("f-website").value.trim(),
-    value: Number($("f-value").value) || 0,
     notes: $("f-notes").value.trim(),
     status: $("f-status").value,
-    updatedAt: serverTimestamp()
+    owner: $("f-owner").value
   };
-  if (!data.company) { showToast("Vul minstens een bedrijfsnaam in.", true); return; }
+  if (!fields.company) { showToast("Vul minstens een bedrijfsnaam in.", true); return; }
 
   const saveBtn = $("saveLeadBtn");
   saveBtn.disabled = true;
   try {
     if (id) {
-      await updateDoc(doc(db, "leads", id), data);
-      showToast("Lead bijgewerkt.");
+      const old = leads.find((l) => l.id === id) || {};
+      const acts = changeActivities(old, fields);
+      const payload = { ...fields, updatedAt: serverTimestamp() };
+      if (acts.length) payload.activities = arrayUnion(...acts);
+      await updateDoc(doc(db, "leads", id), payload);
+      showToast("Opgeslagen.");
     } else {
-      data.createdAt = serverTimestamp();
-      data.createdBy = auth.currentUser ? auth.currentUser.email : "";
-      await addDoc(collection(db, "leads"), data);
+      await addDoc(collection(db, "leads"), {
+        ...fields,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        createdBy: meName(),
+        activities: [mkActivity("aangemaakt", "Lead aangemaakt")]
+      });
       showToast("Lead toegevoegd.");
     }
     closeModal();
@@ -341,6 +435,23 @@ leadForm.addEventListener("submit", async (e) => {
     saveBtn.disabled = false;
   }
 });
+
+/* Bepaalt welke activiteiten een wijziging oplevert. */
+function changeActivities(oldL, neu) {
+  const acts = [];
+  if ((oldL.status || "") !== neu.status) {
+    acts.push(mkActivity("status", `${STATUS_LABEL[oldL.status] || oldL.status || "?"} → ${STATUS_LABEL[neu.status]}`));
+  }
+  if ((oldL.owner || "") !== neu.owner) {
+    acts.push(mkActivity("toewijzing", neu.owner ? `Toegewezen aan ${ownerName(neu.owner)}` : "Toewijzing verwijderd"));
+  }
+  const fieldMap = { company: "bedrijfsnaam", contactName: "contactpersoon", email: "e-mail", phone: "telefoon", website: "website", notes: "notitie" };
+  const changed = Object.keys(fieldMap).filter((k) => (oldL[k] || "") !== (neu[k] || ""));
+  if (changed.length) {
+    acts.push(mkActivity("bewerkt", "Gewijzigd: " + changed.map((k) => fieldMap[k]).join(", ")));
+  }
+  return acts;
+}
 
 deleteLeadBtn.addEventListener("click", async () => {
   const id = $("leadId").value;
@@ -357,24 +468,56 @@ deleteLeadBtn.addEventListener("click", async () => {
   }
 });
 
+/* ---------- Handmatig actie toevoegen ---------- */
+$("actAdd").addEventListener("click", async () => {
+  const id = $("leadId").value;
+  if (!id) return;
+  const type = $("actType").value;
+  const text = $("actText").value.trim();
+  const btn = $("actAdd");
+  btn.disabled = true;
+  try {
+    await updateDoc(doc(db, "leads", id), {
+      updatedAt: serverTimestamp(),
+      activities: arrayUnion(mkActivity(type, text))
+    });
+    $("actText").value = "";
+    showToast("Activiteit toegevoegd.");
+  } catch (err) {
+    console.error(err);
+    showToast("Toevoegen mislukt.", true);
+  } finally {
+    btn.disabled = false;
+  }
+});
+$("actText").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("actAdd").click(); } });
+
 /* ===================================================================
    HELPERS
    =================================================================== */
+function mkActivity(type, text) {
+  return { id: uid(), type, text: text || "", by: meName(), at: Date.now() };
+}
+function uid() {
+  return (crypto.randomUUID && crypto.randomUUID()) || (Date.now() + "-" + Math.random().toString(16).slice(2));
+}
 function esc(str) {
   return String(str ?? "").replace(/[&<>"']/g, (c) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   }[c]));
 }
-function euro(n) { return "€" + (Number(n) || 0).toLocaleString("nl-NL"); }
 function cleanWebsite(url) { return String(url).replace(/^https?:\/\//i, "").replace(/\/$/, ""); }
 function websiteHref(url) {
   if (!url) return "#";
   return /^https?:\/\//i.test(url) ? url : "https://" + url;
 }
-function fmtDate(ts) {
-  if (!ts || !ts.toDate) return "";
+function fmtDateTime(val) {
+  let d;
+  if (typeof val === "number") d = new Date(val);
+  else if (val && val.toDate) d = val.toDate();
+  else return "";
   try {
-    return ts.toDate().toLocaleDateString("nl-NL", { day: "numeric", month: "short", year: "numeric" });
+    return d.toLocaleString("nl-NL", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
   } catch { return ""; }
 }
 
