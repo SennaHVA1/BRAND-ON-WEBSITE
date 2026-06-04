@@ -1,0 +1,6 @@
+# Brand-On — robots.txt
+# De publieke website mag volledig geindexeerd worden.
+# Het interne leadbeheer (/intern/) is afgeschermd voor zoekmachines.
+
+User-agent: *
+Disallow: /intern/

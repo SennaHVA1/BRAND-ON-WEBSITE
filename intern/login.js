@@ -35,8 +35,59 @@ function setLoading(on) {
   btnText.textContent = on ? "Bezig met inloggen…" : "Inloggen";
 }
 
+/* ---------- Bescherming tegen brute-force: max. inlogpogingen ----------
+   Na MAX_ATTEMPTS mislukte pogingen wordt het formulier LOCK_MS vergrendeld.
+   Dit is een UX-laag bovenop Firebase's eigen 'too-many-requests'. */
+const MAX_ATTEMPTS = 5;
+const LOCK_MS = 5 * 60 * 1000; // 5 minuten
+const LS_KEY = "brandon_login_lock";
+let lockTimer = null;
+
+function readLock() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || { count: 0, until: 0 }; }
+  catch { return { count: 0, until: 0 }; }
+}
+function writeLock(v) { try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch {} }
+function clearLock() { try { localStorage.removeItem(LS_KEY); } catch {} clearInterval(lockTimer); }
+function attemptsLeft() { return Math.max(0, MAX_ATTEMPTS - (readLock().count || 0)); }
+
+function recordFailure() {
+  const data = readLock();
+  data.count = (data.count || 0) + 1;
+  if (data.count >= MAX_ATTEMPTS) { data.until = Date.now() + LOCK_MS; data.count = 0; }
+  writeLock(data);
+}
+
+function isCredentialError(err) {
+  const c = (err && err.code) || "";
+  return c === "auth/invalid-credential" || c === "auth/wrong-password"
+      || c === "auth/user-not-found" || c === "auth/invalid-email";
+}
+
+/* Toont/handhaaft de vergrendeling. Retourneert true als (nog) vergrendeld. */
+function enforceLock() {
+  const rem = readLock().until - Date.now();
+  if (rem <= 0) {
+    clearInterval(lockTimer);
+    btn.disabled = false;
+    btnText.textContent = "Inloggen";
+    return false;
+  }
+  btn.disabled = true;
+  const mins = Math.floor(rem / 60000);
+  const secs = Math.ceil((rem % 60000) / 1000);
+  showError(`Te veel mislukte pogingen. Probeer het over ${mins}:${String(secs).padStart(2, "0")} opnieuw.`);
+  clearInterval(lockTimer);
+  lockTimer = setInterval(enforceLock, 1000);
+  return true;
+}
+
+// Bij laden meteen controleren of er nog een vergrendeling actief is.
+enforceLock();
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  if (enforceLock()) return;          // geblokkeerd door te veel pogingen
   clearError();
 
   const email = document.getElementById("email").value.trim();
@@ -59,10 +110,18 @@ form.addEventListener("submit", async (e) => {
       setLoading(false);
       return;
     }
+    clearLock();
     window.location.replace("dashboard.html");
   } catch (err) {
     setLoading(false);
-    showError(friendlyError(err));
+    if (isCredentialError(err)) {
+      recordFailure();
+      if (enforceLock()) return;       // zojuist vergrendeld geraakt
+      const left = attemptsLeft();
+      showError(`${friendlyError(err)} Nog ${left} poging${left === 1 ? "" : "en"} over.`);
+    } else {
+      showError(friendlyError(err));
+    }
   }
 });
 

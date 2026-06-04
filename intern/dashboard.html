@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="dashboard.css">
-  <link rel="icon" href="logo_blauw.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+  <link rel="icon" href="../assets/img/logo_blauw.png">
 </head>
 <body class="app-body">
 
@@ -20,8 +20,8 @@
   <!-- ===================== APP BAR ===================== -->
   <header class="app-bar">
     <div class="app-bar-inner">
-      <a href="index.html" class="app-logo" aria-label="Brand-On">
-        <img src="logo_blauw.png" alt="Brand-On">
+      <a href="../index.html" class="app-logo" aria-label="Brand-On">
+        <img src="../assets/img/logo_blauw.png" alt="Brand-On">
         <span class="app-logo-tag">Leadbeheer</span>
       </a>
       <div class="app-bar-right">
@@ -132,7 +132,7 @@
   if (location.protocol === "file:") {
     document.addEventListener("DOMContentLoaded", function () {
       var l = document.getElementById("appLoading");
-      if (l) l.innerHTML = '<div style="max-width:440px;text-align:center;font-family:var(--font-mono);font-size:0.85rem;color:#56678a;line-height:1.7;padding:24px">Open deze pagina niet rechtstreeks als bestand.<br>Ga naar <strong>https://brand-on.org/dashboard.html</strong><br>of gebruik een lokale server.</div>';
+      if (l) l.innerHTML = '<div style="max-width:440px;text-align:center;font-family:var(--font-mono);font-size:0.85rem;color:#56678a;line-height:1.7;padding:24px">Open deze pagina niet rechtstreeks als bestand.<br>Ga naar <strong>https://brand-on.org/intern/dashboard.html</strong><br>of gebruik een lokale server.</div>';
     });
   }
   </script>
