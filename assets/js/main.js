@@ -223,6 +223,39 @@
     });
   })();
 
+  /* ---------- Cookie consent (AVG / Consent Mode v2) ---------- */
+  (function cookieConsent() {
+    let stored;
+    try { stored = localStorage.getItem('cookie-consent'); } catch (e) { stored = 'declined'; }
+    if (stored === 'accepted' || stored === 'declined') return;
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Cookietoestemming');
+    banner.innerHTML =
+      '<p class="cookie-text">We gebruiken anonieme analytische cookies om onze website te verbeteren. ' +
+      'Meer weten? Lees ons <a href="/privacy">privacybeleid</a>.</p>' +
+      '<div class="cookie-actions">' +
+      '<button type="button" class="btn btn--ghost" data-cookie="decline"><span>Weigeren</span></button>' +
+      '<button type="button" class="btn" data-cookie="accept"><span>Accepteren</span></button>' +
+      '</div>';
+    document.body.appendChild(banner);
+    requestAnimationFrame(() => banner.classList.add('is-visible'));
+
+    const choose = (value) => {
+      try { localStorage.setItem('cookie-consent', value); } catch (e) {}
+      if (value === 'accepted' && typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
+      banner.classList.remove('is-visible');
+      setTimeout(() => banner.remove(), 500);
+    };
+
+    banner.querySelector('[data-cookie="accept"]').addEventListener('click', () => choose('accepted'));
+    banner.querySelector('[data-cookie="decline"]').addEventListener('click', () => choose('declined'));
+  })();
+
   /* ---------- Footer year ---------- */
   const y = document.querySelector('[data-year]');
   if (y) y.textContent = new Date().getFullYear();
