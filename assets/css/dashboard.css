@@ -186,18 +186,24 @@ body.modal-lock { overflow: hidden; }
 .activity-sub { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
 .action-bar { display: flex; gap: 8px; margin: 18px 0 22px; flex-wrap: wrap; }
 .action-bar select, .action-bar input { padding: 12px 14px; border: 1px solid var(--line-strong); background: #fff; }
-.action-bar input { flex: 1; min-width: 160px; }
+.action-bar input[type="text"] { flex: 1; min-width: 160px; }
+.action-bar input[type="datetime-local"] { flex: 0 0 auto; font-family: var(--font-mono); font-size: 0.85rem; }
 .action-bar select:focus, .action-bar input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(0,34,80,0.08); }
 .action-bar .btn { width: auto; }
 
 .timeline { list-style: none; margin: 0; padding: 0; }
 .timeline .tl-empty { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); padding: 8px 0; }
-.tl-item { display: grid; grid-template-columns: 32px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.tl-item { display: grid; grid-template-columns: 32px 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: start; }
 .tl-item:last-child { border-bottom: 0; }
+.tl-item.is-editing { background: var(--tint); margin-inline: -10px; padding-inline: 10px; }
 .tl-dot { width: 32px; height: 32px; border: 1px solid var(--line-strong); display: grid; place-items: center; color: var(--navy); background: #fff; }
 .tl-type { font-weight: 600; font-size: 0.95rem; }
 .tl-text { color: var(--muted); font-size: 0.9rem; margin-top: 3px; word-break: break-word; }
 .tl-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+.tl-actions { display: flex; gap: 4px; }
+.tl-actions button { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid transparent; color: var(--muted); transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.tl-actions button:hover { background: #fff; border-color: var(--line-strong); color: var(--navy); }
+.tl-actions button.del:hover { color: #9a2020; border-color: #e6b4b4; }
 
 /* ============================================================
    TOAST

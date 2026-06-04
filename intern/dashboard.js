@@ -69,7 +69,8 @@ let leads = [];
 let activeFilter = "alles";
 let searchTerm = "";
 let unsubscribe = null;
-let openLeadId = null; // id van lead die in de modal bewerkt wordt
+let openLeadId = null;   // id van lead die in de modal bewerkt wordt
+let editingActId = null; // id van activiteit die bewerkt wordt (of null)
 
 /* ---------- Elements ---------- */
 const $ = (id) => document.getElementById(id);
@@ -90,6 +91,8 @@ const modalTitle = $("modalTitle");
 const deleteLeadBtn = $("deleteLeadBtn");
 const activitySection = $("activitySection");
 const timelineEl = $("timeline");
+const actDateEl = $("actDate");
+const actCancelBtn = $("actCancel");
 
 /* ===================================================================
    AUTH GUARD
@@ -266,7 +269,7 @@ function renderTimeline(lead) {
     return;
   }
   timelineEl.innerHTML = acts.map((a) => `
-    <li class="tl-item">
+    <li class="tl-item ${editingActId === a.id ? "is-editing" : ""}" data-act-id="${esc(a.id)}">
       <span class="tl-dot" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${ACT_ICON[a.type] || ACT_ICON.notitie}</svg>
       </span>
@@ -274,6 +277,14 @@ function renderTimeline(lead) {
         <span class="tl-type">${esc(ACT_LABEL[a.type] || "Activiteit")}</span>
         ${a.text ? `<div class="tl-text">${esc(a.text)}</div>` : ""}
         <div class="tl-meta">${esc(a.by || "")} · ${fmtDateTime(a.at)}</div>
+      </div>
+      <div class="tl-actions">
+        <button type="button" data-act-edit title="Bewerk" aria-label="Activiteit bewerken">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </button>
+        <button type="button" class="del" data-act-del title="Verwijder" aria-label="Activiteit verwijderen">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13h10l1-13"/></svg>
+        </button>
       </div>
     </li>`).join("");
 }
@@ -374,7 +385,7 @@ function openModal(lead) {
 
   // Activiteiten alleen bij bestaande lead
   activitySection.hidden = !editing;
-  if (editing) { $("actText").value = ""; renderTimeline(lead); }
+  if (editing) { resetActionBar(); renderTimeline(lead); }
 
   modal.hidden = false;
   document.body.classList.add("modal-lock");
@@ -468,35 +479,94 @@ deleteLeadBtn.addEventListener("click", async () => {
   }
 });
 
-/* ---------- Handmatig actie toevoegen ---------- */
+/* ---------- Activiteiten: toevoegen / bewerken / verwijderen ---------- */
+function resetActionBar() {
+  editingActId = null;
+  $("actType").value = ACTION_TYPES[0].key;
+  $("actText").value = "";
+  actDateEl.value = toLocalInput(Date.now());
+  $("actAdd").querySelector("span").textContent = "Toevoegen";
+  actCancelBtn.hidden = true;
+}
+
+function startEditActivity(actId) {
+  const lead = leads.find((l) => l.id === openLeadId);
+  if (!lead) return;
+  const a = (lead.activities || []).find((x) => x.id === actId);
+  if (!a) return;
+  editingActId = actId;
+  $("actType").value = a.type;
+  $("actText").value = a.text || "";
+  actDateEl.value = toLocalInput(a.at);
+  $("actAdd").querySelector("span").textContent = "Bijwerken";
+  actCancelBtn.hidden = false;
+  renderTimeline(lead);
+  $("actText").focus();
+}
+
+async function deleteActivity(actId) {
+  const lead = leads.find((l) => l.id === openLeadId);
+  if (!lead) return;
+  if (!confirm("Deze activiteit verwijderen?")) return;
+  const next = (lead.activities || []).filter((x) => x.id !== actId);
+  try {
+    await updateDoc(doc(db, "leads", openLeadId), { activities: next, updatedAt: serverTimestamp() });
+    if (editingActId === actId) resetActionBar();
+    showToast("Activiteit verwijderd.");
+  } catch (err) {
+    console.error(err);
+    showToast("Verwijderen mislukt.", true);
+  }
+}
+
 $("actAdd").addEventListener("click", async () => {
-  const id = $("leadId").value;
+  const id = openLeadId;
   if (!id) return;
+  const lead = leads.find((l) => l.id === id) || {};
   const type = $("actType").value;
   const text = $("actText").value.trim();
+  const at = fromLocalInput(actDateEl.value);
   const btn = $("actAdd");
   btn.disabled = true;
   try {
-    await updateDoc(doc(db, "leads", id), {
-      updatedAt: serverTimestamp(),
-      activities: arrayUnion(mkActivity(type, text))
-    });
-    $("actText").value = "";
-    showToast("Activiteit toegevoegd.");
+    if (editingActId) {
+      const next = (lead.activities || []).map((x) => x.id === editingActId ? { ...x, type, text, at } : x);
+      await updateDoc(doc(db, "leads", id), { activities: next, updatedAt: serverTimestamp() });
+      showToast("Activiteit bijgewerkt.");
+      resetActionBar();
+    } else {
+      await updateDoc(doc(db, "leads", id), {
+        updatedAt: serverTimestamp(),
+        activities: arrayUnion(mkActivity(type, text, at))
+      });
+      showToast("Activiteit toegevoegd.");
+      $("actText").value = "";
+      actDateEl.value = toLocalInput(Date.now());
+    }
   } catch (err) {
     console.error(err);
-    showToast("Toevoegen mislukt.", true);
+    showToast(editingActId ? "Bijwerken mislukt." : "Toevoegen mislukt.", true);
   } finally {
     btn.disabled = false;
   }
 });
+actCancelBtn.addEventListener("click", resetActionBar);
 $("actText").addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); $("actAdd").click(); } });
+
+/* Bewerken / verwijderen via de tijdlijn */
+timelineEl.addEventListener("click", (e) => {
+  const item = e.target.closest("[data-act-id]");
+  if (!item) return;
+  const actId = item.dataset.actId;
+  if (e.target.closest("[data-act-del]")) deleteActivity(actId);
+  else if (e.target.closest("[data-act-edit]")) startEditActivity(actId);
+});
 
 /* ===================================================================
    HELPERS
    =================================================================== */
-function mkActivity(type, text) {
-  return { id: uid(), type, text: text || "", by: meName(), at: Date.now() };
+function mkActivity(type, text, at) {
+  return { id: uid(), type, text: text || "", by: meName(), at: at || Date.now() };
 }
 function uid() {
   return (crypto.randomUUID && crypto.randomUUID()) || (Date.now() + "-" + Math.random().toString(16).slice(2));
@@ -519,6 +589,16 @@ function fmtDateTime(val) {
   try {
     return d.toLocaleString("nl-NL", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
   } catch { return ""; }
+}
+/* Omzetten tussen ms en de waarde van <input type="datetime-local"> (lokale tijd). */
+function toLocalInput(ms) {
+  const d = new Date(ms);
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+function fromLocalInput(str) {
+  const t = new Date(str).getTime();
+  return isNaN(t) ? Date.now() : t;
 }
 
 let toastTimer = null;

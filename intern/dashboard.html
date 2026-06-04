@@ -129,8 +129,10 @@
         <p class="activity-sub">Leg vast wie wat heeft gedaan — automatisch met datum en tijd.</p>
         <div class="action-bar">
           <select id="actType" aria-label="Soort actie"></select>
+          <input type="datetime-local" id="actDate" aria-label="Datum en tijd" title="Datum en tijd van de actie">
           <input type="text" id="actText" placeholder="Details (optioneel)…" autocomplete="off">
           <button type="button" class="btn" id="actAdd"><span>Toevoegen</span></button>
+          <button type="button" class="btn btn--ghost" id="actCancel" hidden><span>Annuleer</span></button>
         </div>
         <ol class="timeline" id="timeline"></ol>
       </section>
