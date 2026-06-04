@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leadbeheer — Brand-On Intern</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="icon" href="logo_blauw.png">
+</head>
+<body class="app-body">
+
+  <!-- Laad-overlay tot auth bekend is -->
+  <div class="app-loading" id="appLoading"><span class="spinner" aria-hidden="true"></span></div>
+
+  <!-- ===================== APP BAR ===================== -->
+  <header class="app-bar">
+    <div class="app-bar-inner">
+      <a href="index.html" class="app-logo" aria-label="Brand-On">
+        <img src="logo_blauw.png" alt="Brand-On">
+        <span class="app-logo-tag">Leadbeheer</span>
+      </a>
+      <div class="app-bar-right">
+        <span class="app-user" id="appUser" title="Ingelogd als"></span>
+        <button class="icon-btn" id="logoutBtn" title="Uitloggen" aria-label="Uitloggen">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main" id="appMain" hidden>
+
+    <!-- Header + stats -->
+    <section class="app-head">
+      <div>
+        <h1 class="app-title">Leads &amp; klanten</h1>
+        <p class="app-subtitle">Beheer je pipeline — van eerste lead tot vaste klant.</p>
+      </div>
+      <button class="btn" id="newLeadBtn"><span>+ Nieuwe lead</span></button>
+    </section>
+
+    <section class="stats" id="stats"></section>
+
+    <!-- Toolbar -->
+    <section class="toolbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="searchInput" placeholder="Zoek op bedrijf, naam, e-mail of website…" autocomplete="off">
+      </div>
+      <div class="tabs" id="tabs" role="tablist"></div>
+    </section>
+
+    <!-- Leads -->
+    <section class="leads" id="leads"></section>
+    <div class="empty" id="emptyState" hidden>
+      <span class="pwr" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+      <p id="emptyText">Nog geen leads. Voeg je eerste lead toe.</p>
+    </div>
+
+  </main>
+
+  <!-- ===================== MODAL ===================== -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h2 id="modalTitle">Nieuwe lead</h2>
+        <button class="icon-btn" data-close aria-label="Sluiten">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <form class="form modal-form" id="leadForm" novalidate>
+        <input type="hidden" id="leadId">
+        <div class="field-row">
+          <div class="field">
+            <label for="f-company">Bedrijfsnaam</label>
+            <input type="text" id="f-company" required>
+          </div>
+          <div class="field">
+            <label for="f-status">Status</label>
+            <select id="f-status"></select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-contact">Contactpersoon</label>
+            <input type="text" id="f-contact">
+          </div>
+          <div class="field">
+            <label for="f-value">Geschatte waarde (€)</label>
+            <input type="number" id="f-value" min="0" step="50" placeholder="0">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-email">E-mailadres</label>
+            <input type="email" id="f-email">
+          </div>
+          <div class="field">
+            <label for="f-phone">Telefoonnummer</label>
+            <input type="tel" id="f-phone">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-website">Huidige website <span class="opt">(bv. verouderde site)</span></label>
+          <input type="text" id="f-website" placeholder="www.voorbeeld.nl">
+        </div>
+        <div class="field">
+          <label for="f-notes">Notities</label>
+          <textarea id="f-notes" placeholder="Bv. 'Oude site uit 2014, geen mobiel. Bellen na 14:00.'"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn--ghost" id="deleteLeadBtn" hidden><span>Verwijderen</span></button>
+          <div class="modal-actions-right">
+            <button type="button" class="btn btn--ghost" data-close><span>Annuleren</span></button>
+            <button type="submit" class="btn" id="saveLeadBtn"><span>Opslaan</span></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  if (location.protocol === "file:") {
+    document.addEventListener("DOMContentLoaded", function () {
+      var l = document.getElementById("appLoading");
+      if (l) l.innerHTML = '<div style="max-width:440px;text-align:center;font-family:var(--font-mono);font-size:0.85rem;color:#56678a;line-height:1.7;padding:24px">Open deze pagina niet rechtstreeks als bestand.<br>Ga naar <strong>https://brand-on.org/dashboard.html</strong><br>of gebruik een lokale server.</div>';
+    });
+  }
+  </script>
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

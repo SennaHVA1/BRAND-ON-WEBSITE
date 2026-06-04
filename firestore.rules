@@ -1,0 +1,29 @@
+rules_version = '2';
+
+// ===================================================================
+// BRAND-ON — Firestore beveiligingsregels
+// Plak deze inhoud in: Firebase Console > Firestore Database > Regels.
+// Zet hieronder dezelfde e-mailadressen als in firebase-config.js.
+// Alleen ingelogde, toegestane gebruikers kunnen leads lezen/schrijven.
+// ===================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAllowed() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'sennahogendoorn2005@gmail.com',
+          'producedbyjaimy@gmail.com'
+        ];
+    }
+
+    match /leads/{leadId} {
+      allow read, write: if isAllowed();
+    }
+
+    // Alles wat hierboven niet expliciet is toegestaan, blokkeren:
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inloggen — Brand-On Intern</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="icon" href="logo_blauw.png">
+</head>
+<body class="auth-body">
+
+  <div class="auth-bg" aria-hidden="true">
+    <div class="grid"></div>
+    <div class="glow"></div>
+  </div>
+
+  <main class="auth-wrap">
+    <div class="auth-card">
+      <a href="index.html" class="auth-logo" aria-label="Brand-On home">
+        <img src="logo_blauw.png" alt="Brand-On">
+      </a>
+      <span class="eyebrow" style="margin-top:26px">Intern · Leadbeheer</span>
+      <h1 class="auth-title">Welkom terug.</h1>
+      <p class="auth-sub">Log in om jullie leads en klanten te beheren.</p>
+
+      <div class="auth-error" id="fileWarn">
+        Open deze pagina niet rechtstreeks als bestand. Ga naar
+        <strong>https://brand-on.org/login.html</strong> of gebruik een lokale server.
+      </div>
+
+      <form class="form" id="loginForm" style="margin-top:30px" novalidate>
+        <div class="field">
+          <label for="email">E-mailadres</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="password">Wachtwoord</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required>
+        </div>
+
+        <div class="auth-error" id="loginError" role="alert"></div>
+
+        <button class="btn" type="submit" id="loginBtn" style="width:100%;justify-content:center">
+          <span id="loginBtnText">Inloggen</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </button>
+      </form>
+
+      <p class="auth-note">
+        <span class="pwr" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+        Beveiligd met Firebase Authentication. Alleen voor Brand-On.
+      </p>
+    </div>
+    <a href="index.html" class="auth-back">← Terug naar de website</a>
+  </main>
+
+  <!-- Vangnet: voorkomt dat het formulier 'ouderwets' verstuurt als de
+       Firebase-modules niet laden (bv. bij openen via file://). -->
+  <script>
+  (function () {
+    var form = document.getElementById("loginForm");
+    if (form) form.addEventListener("submit", function (e) { e.preventDefault(); });
+    if (location.protocol === "file:") {
+      var w = document.getElementById("fileWarn");
+      if (w) w.classList.add("show");
+    }
+  })();
+  </script>
+  <script type="module" src="login.js"></script>
+</body>
+</html>
