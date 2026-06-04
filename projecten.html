@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projecten — Brand-On</title>
+  <meta name="description" content="Een selectie uit ons werk: websites, fotografie en branding voor Nederlandse ondernemers. Ons werk spreekt voor zich.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo_blauw.png">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand-logo" href="index.html" aria-label="Brand-On — home">
+        <img class="logo-blauw" src="logo_blauw.png" alt="Brand-On">
+        <img class="logo-wit" src="logo_wit.png" alt="" aria-hidden="true">
+      </a>
+      <nav class="nav-links" aria-label="Hoofdmenu">
+        <a href="index.html">Home</a>
+        <a href="over-ons.html">Over ons</a>
+        <a href="tarieven.html">Tarieven</a>
+        <a href="projecten.html">Projecten</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="btn nav-cta" href="contact.html"><span>Start je project</span></a>
+      <button class="nav-toggle" aria-label="Menu openen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== PAGE HERO ===================== -->
+    <section class="hero page-hero">
+      <div class="hero-bg">
+        <div class="grid"></div>
+        <div class="glow"></div>
+      </div>
+      <div class="wrap">
+        <div class="hero-inner">
+          <span class="crumb" data-reveal>Projecten</span>
+          <h1 class="h-display" data-reveal style="--reveal-delay:.08s;margin-top:20px">Ons werk<br>spreekt voor zich.</h1>
+          <p class="lead" data-reveal style="--reveal-delay:.16s">Een greep uit de projecten waar we trots op zijn — van horeca tot bouw, van eerste logo tot complete website.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECT GRID ===================== -->
+    <section class="section bg-white">
+      <div class="wrap">
+        <div class="filterbar" data-filterbar data-reveal aria-label="Filter projecten">
+          <button class="active" data-filter="all">Alles</button>
+          <button data-filter="Website">Website</button>
+          <button data-filter="Fotografie">Fotografie</button>
+          <button data-filter="Branding">Branding</button>
+        </div>
+
+        <div class="proj-grid">
+          <a class="proj" href="contact.html" data-project data-tags="Website,Fotografie" data-reveal>
+            <div class="proj-thumb">
+              <span class="corner">001 / Horeca</span>
+              <span class="wm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+              <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+            </div>
+            <div class="proj-body">
+              <h3>Restaurant De Haven</h3>
+              <p>Sfeervolle website met online reserveren en sfeerfotografie.</p>
+              <div class="proj-tags"><span class="tag">Website</span><span class="tag">Fotografie</span></div>
+            </div>
+          </a>
+
+          <a class="proj" href="contact.html" data-project data-tags="Branding,Website" data-reveal style="--reveal-delay:.06s">
+            <div class="proj-thumb">
+              <span class="corner">002 / Beauty</span>
+              <span class="wm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+              <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+            </div>
+            <div class="proj-body">
+              <h3>Kapsalon Bloom</h3>
+              <p>Volledige huisstijl met een frisse, uitnodigende boekingssite.</p>
+              <div class="proj-tags"><span class="tag">Branding</span><span class="tag">Website</span></div>
+            </div>
+          </a>
+
+          <a class="proj" href="contact.html" data-project data-tags="Website" data-reveal style="--reveal-delay:.12s">
+            <div class="proj-thumb">
+              <span class="corner">003 / Bouw</span>
+              <span class="wm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+              <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+            </div>
+            <div class="proj-body">
+              <h3>Dakdekker Noord</h3>
+              <p>Vertrouwenwekkende website met offerte-aanvraag en sterke SEO.</p>
+              <div class="proj-tags"><span class="tag">Website</span><span class="tag">SEO</span></div>
+            </div>
+          </a>
+
+          <a class="proj" href="contact.html" data-project data-tags="Fotografie,Branding" data-reveal>
+            <div class="proj-thumb">
+              <span class="corner">004 / Retail</span>
+              <span class="wm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+              <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+            </div>
+            <div class="proj-body">
+              <h3>Atelier Vesting</h3>
+              <p>Productfotografie en merkidentiteit voor een lokale conceptstore.</p>
+              <div class="proj-tags"><span class="tag">Fotografie</span><span class="tag">Branding</span></div>
+            </div>
+          </a>
+
+          <a class="proj" href="contact.html" data-project data-tags="Website,Branding" data-reveal style="--reveal-delay:.06s">
+            <div class="proj-thumb">
+              <span class="corner">005 / Zorg</span>
+              <span class="wm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+              <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+            </div>
+            <div class="proj-body">
+              <h3>Praktijk Helder</h3>
+              <p>Rustige, toegankelijke website met online afspraken voor een zorgpraktijk.</p>
+              <div class="proj-tags"><span class="tag">Website</span><span class="tag">Branding</span></div>
+            </div>
+          </a>
+
+          <a class="proj" href="contact.html" data-project data-tags="Fotografie,Website" data-reveal style="--reveal-delay:.12s">
+            <div class="proj-thumb">
+              <span class="corner">006 / Sport</span>
+              <span class="wm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 2.5v8.5"/><path d="M6.8 5.8a8 8 0 1 0 10.4 0"/></svg></span>
+              <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
+            </div>
+            <div class="proj-body">
+              <h3>Studio Kracht</h3>
+              <p>Energieke website en actiefotografie voor een personal-training studio.</p>
+              <div class="proj-tags"><span class="tag">Fotografie</span><span class="tag">Website</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="section bg-navy cta-band">
+      <div class="wrap">
+        <span class="eyebrow eyebrow--plain" data-reveal style="justify-content:center">Jouw project hier?</span>
+        <h2 class="h-display" data-reveal style="--reveal-delay:.06s;margin-top:18px">Laten we iets moois bouwen.</h2>
+        <p class="lead" data-reveal style="--reveal-delay:.12s">We hebben altijd ruimte voor een nieuw project waar we trots op kunnen zijn.</p>
+        <div class="hero-actions" data-reveal style="--reveal-delay:.18s">
+          <a class="btn btn--on-navy" href="contact.html"><span>Start je project</span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="btn btn--ghost-navy" href="tarieven.html"><span>Bekijk tarieven</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="logo_wit.png" alt="Brand-On">
+          <p class="tagline">Jouw online aanwezigheid, onze passie.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigatie</h4>
+          <a href="index.html">Home</a>
+          <a href="over-ons.html">Over ons</a>
+          <a href="tarieven.html">Tarieven</a>
+          <a href="projecten.html">Projecten</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@brand-on.org">hello@brand-on.org</a>
+          <a href="contact.html">Start je project</a>
+          <span style="display:block;padding:7px 0;color:#c6d4ec">Nederland</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Brand-On. Alle rechten voorbehouden.</p>
+        <p>Jouw website. Jouw visitekaartje.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
