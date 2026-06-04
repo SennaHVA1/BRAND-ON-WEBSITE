@@ -185,8 +185,16 @@ p { text-wrap: pretty; }
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+  transition: box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
   border-bottom: 1px solid transparent;
+}
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  transition: background 0.4s var(--ease);
 }
 .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
@@ -231,10 +239,12 @@ p { text-wrap: pretty; }
 
 /* scrolled / solid state → navy logo, dark text on white */
 .site-header.scrolled {
+  border-bottom-color: var(--line);
+}
+.site-header.scrolled::before {
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom-color: var(--line);
 }
 .site-header.scrolled .logo-wit { opacity: 0; }
 .site-header .logo-blauw { opacity: 0; }
