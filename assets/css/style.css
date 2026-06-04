@@ -264,6 +264,7 @@ p { text-wrap: pretty; }
 .nav-toggle span:nth-child(3) { top: 28px; }
 .site-header.scrolled .nav-toggle span { background: var(--navy); }
 body.menu-open .nav-toggle span { background: #fff; }
+body.menu-open .site-header.scrolled .nav-toggle span { background: #fff; }
 body.menu-open .nav-toggle span:nth-child(1) { top: 22px; transform: rotate(45deg); }
 body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
 body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45deg); }
@@ -726,6 +727,7 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
   .nav-links a { color: #fff; font-size: 1.4rem; padding: 12px 0; font-family: var(--font-display); letter-spacing: -0.01em; }
   .nav-links a::after { left: 0; right: auto; width: 100%; bottom: 6px; }
   .site-header.scrolled .nav-links a { color: #fff; }
+  .site-header.scrolled .nav-links a.active { color: #fff; }
   .nav-cta { display: none; }
   .nav-toggle { display: block; }
 
