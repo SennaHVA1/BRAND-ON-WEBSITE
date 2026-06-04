@@ -32,11 +32,13 @@
 
   /* ---------- Active nav link per page ---------- */
   (function highlightNav() {
-    let path = window.location.pathname.split('/').pop();
-    if (!path) path = 'index.html';
+    const norm = (p) => {
+      p = p.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/(.)\/+$/, '$1');
+      return p === '' ? '/' : p;
+    };
+    const path = norm(window.location.pathname);
     document.querySelectorAll('.nav-links a').forEach((a) => {
-      const href = a.getAttribute('href');
-      if (href === path) a.classList.add('active');
+      if (norm(a.getAttribute('href')) === path) a.classList.add('active');
     });
   })();
 
