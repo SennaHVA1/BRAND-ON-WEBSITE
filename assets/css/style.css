@@ -292,7 +292,7 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
   filter: blur(8px);
 }
 .hero-bg .logo-watermark {
-  position: absolute; right: -5%; bottom: -12%;
+  position: absolute; right: clamp(32px, 5vw, 80px); bottom: clamp(32px, 5vw, 72px);
   width: clamp(220px, 30vw, 460px);
   opacity: 0.07;
 }
