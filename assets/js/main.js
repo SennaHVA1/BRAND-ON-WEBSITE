@@ -187,17 +187,39 @@
     });
   })();
 
-  /* ---------- Contact form (front-end only demo) ---------- */
+  /* ---------- Contact form (Web3Forms) ---------- */
   (function contactForm() {
     const form = document.querySelector('[data-contact-form]');
     if (!form) return;
-    form.addEventListener('submit', (e) => {
+    const success = form.querySelector('[data-success]');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const btnText = submitBtn ? submitBtn.querySelector('span') : null;
+    const defaultLabel = btnText ? btnText.textContent : '';
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const success = form.querySelector('[data-success]');
-      if (success) success.classList.add('show');
-      form.querySelectorAll('input, textarea, select, button').forEach((el) => {
-        if (el.type !== 'button') el.setAttribute('disabled', 'true');
-      });
+      if (!form.reportValidity()) return;
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.textContent = 'Versturen…';
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.message || 'Versturen mislukt');
+
+        if (success) success.classList.add('show');
+        form.querySelectorAll('input, textarea, select').forEach((el) => el.setAttribute('disabled', 'true'));
+        if (btnText) btnText.textContent = 'Verzonden';
+      } catch (err) {
+        if (btnText) btnText.textContent = defaultLabel;
+        if (submitBtn) submitBtn.disabled = false;
+        alert('Er ging iets mis bij het versturen. Probeer het opnieuw of mail rechtstreeks naar info@brand-on.org.');
+      }
     });
   })();
 
