@@ -15,6 +15,7 @@ import {
 const STATUSES = [
   { key: "nieuw",              label: "Onbenaderd" },
   { key: "benaderd",           label: "Benaderd" },
+  { key: "demo_klaar",         label: "Demo website klaar" },
   { key: "offerte",            label: "Offerte" },
   { key: "klant",              label: "Klant" },
   { key: "verloren",           label: "Verloren" },
@@ -40,17 +41,19 @@ function myDefaultOwner() {
 
 /* ---------- Soorten acties (handmatig toe te voegen) ---------- */
 const ACTION_TYPES = [
-  { key: "notitie",  label: "Notitie" },
-  { key: "gebeld",   label: "Gebeld" },
-  { key: "bezoek",   label: "Locatie bezoek" },
-  { key: "email",    label: "E-mail gestuurd" },
-  { key: "afspraak", label: "Afspraak" }
+  { key: "notitie",      label: "Notitie" },
+  { key: "gebeld",       label: "Gebeld" },
+  { key: "bezoek",       label: "Locatie bezoek" },
+  { key: "email",        label: "E-mail gestuurd" },
+  { key: "afspraak",     label: "Afspraak" },
+  { key: "demo_gemaakt", label: "Demo website gemaakt" }
 ];
 /* Labels voor alle activiteitstypes (incl. automatische) */
 const ACT_LABEL = {
   aangemaakt: "Aangemaakt", bewerkt: "Bijgewerkt", status: "Status gewijzigd",
   toewijzing: "Toegewezen", notitie: "Notitie", gebeld: "Gebeld",
-  bezoek: "Locatie bezoek", email: "E-mail gestuurd", afspraak: "Afspraak"
+  bezoek: "Locatie bezoek", email: "E-mail gestuurd", afspraak: "Afspraak",
+  demo_gemaakt: "Demo website gemaakt"
 };
 /* Icoon-paths per type */
 const ACT_ICON = {
@@ -62,7 +65,8 @@ const ACT_ICON = {
   gebeld:     '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
   bezoek:     '<path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
   email:      '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/>',
-  afspraak:   '<rect x="3" y="4" width="18" height="17" rx="1"/><path d="M3 9h18M8 2v4M16 2v4"/>'
+  afspraak:   '<rect x="3" y="4" width="18" height="17" rx="1"/><path d="M3 9h18M8 2v4M16 2v4"/>',
+  demo_gemaakt: '<rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/>'
 };
 
 /* ---------- State ---------- */
