@@ -13,11 +13,12 @@ import {
 
 /* ---------- Pipeline statussen ---------- */
 const STATUSES = [
-  { key: "nieuw",     label: "Nieuw" },
-  { key: "benaderd",  label: "Benaderd" },
-  { key: "offerte",   label: "Offerte" },
-  { key: "klant",     label: "Klant" },
-  { key: "verloren",  label: "Verloren" }
+  { key: "nieuw",              label: "Onbenaderd" },
+  { key: "benaderd",           label: "Benaderd" },
+  { key: "offerte",            label: "Offerte" },
+  { key: "klant",              label: "Klant" },
+  { key: "verloren",           label: "Verloren" },
+  { key: "nietgeinteresseerd", label: "Niet geïnteresseerd" }
 ];
 const STATUS_LABEL = Object.fromEntries(STATUSES.map((s) => [s.key, s.label]));
 
@@ -143,13 +144,11 @@ function render() {
 }
 
 function renderStats() {
-  const open = leads.filter((l) => l.status !== "klant" && l.status !== "verloren").length;
-  const cards = [
-    { label: "Totaal leads", value: leads.length },
-    { label: "Open in pipeline", value: open },
-    { label: "Klanten", value: leads.filter((l) => l.status === "klant").length },
-    { label: "Verloren", value: leads.filter((l) => l.status === "verloren").length }
-  ];
+  const cards = [{ label: "Totaal leads", value: leads.length }]
+    .concat(STATUSES.map((s) => ({
+      label: s.label,
+      value: leads.filter((l) => l.status === s.key).length
+    })));
   statsEl.innerHTML = cards.map((c) => `
     <div class="stat">
       <div class="stat-val">${c.value}</div>
