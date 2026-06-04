@@ -127,7 +127,7 @@
         const included = PKG_PAGES[pkg];
         const lines = [];
         let total = PKG[pkg];
-        lines.push({ label: 'Pakket — ' + PKG_LABEL[pkg] + ' (' + included + ' pag.)', value: euro(PKG[pkg]) });
+        lines.push({ label: 'Pakket — ' + PKG_LABEL[pkg] + ' (' + included + " pagina's)", value: euro(PKG[pkg]) });
         if (pagesIncludedEl) pagesIncludedEl.textContent = '(' + included + ' al inbegrepen)';
 
         // photography is included in Professioneel
