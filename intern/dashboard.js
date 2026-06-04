@@ -14,8 +14,8 @@ import {
 /* ---------- Pipeline statussen ---------- */
 const STATUSES = [
   { key: "nieuw",              label: "Onbenaderd" },
-  { key: "benaderd",           label: "Benaderd" },
   { key: "demo_klaar",         label: "Demo website klaar" },
+  { key: "benaderd",           label: "Benaderd" },
   { key: "offerte",            label: "Offerte" },
   { key: "klant",              label: "Klant" },
   { key: "verloren",           label: "Verloren" },
