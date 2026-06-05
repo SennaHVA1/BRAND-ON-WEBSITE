@@ -116,12 +116,13 @@
   flex-shrink: 0;
 }
 .badge { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23667' stroke-width='1.6'/%3E%3C/svg%3E"); }
-.badge--nieuw    { color: var(--st-nieuw);    background-color: rgba(47,123,255,0.10); }
-.badge--benaderd { color: var(--st-benaderd); background-color: rgba(199,125,0,0.12); }
-.badge--offerte  { color: var(--st-offerte);  background-color: rgba(91,84,214,0.12); }
-.badge--klant    { color: var(--st-klant);    background-color: rgba(31,157,87,0.12); }
-.badge--verloren { color: var(--st-verloren); background-color: rgba(138,150,168,0.14); }
-.badge--nietgeinteresseerd { color: #b5546e; background-color: rgba(181,84,110,0.12); }
+.badge--nieuw          { color: var(--st-nieuw);    background-color: rgba(47,123,255,0.10); }
+.badge--demo_klaar     { color: #0e7490;            background-color: rgba(14,116,144,0.10); }
+.badge--benaderd       { color: var(--st-benaderd); background-color: rgba(199,125,0,0.12); }
+.badge--offerte        { color: var(--st-offerte);  background-color: rgba(91,84,214,0.12); }
+.badge--klant          { color: var(--st-klant);    background-color: rgba(31,157,87,0.12); }
+.badge--verloren       { color: var(--st-verloren); background-color: rgba(138,150,168,0.14); }
+.badge--nietgeinteresseerd { color: #b5546e;        background-color: rgba(181,84,110,0.12); }
 
 /* Contact rows */
 .lead-contacts { display: grid; gap: 8px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0; }
@@ -283,3 +284,24 @@ body.modal-lock { overflow: hidden; }
 [data-theme="dark"] .tl-actions button:hover {
   background: var(--tint);
 }
+
+/* Status-badges: browser-default wit overschrijven */
+[data-theme="dark"] .badge--nieuw          { background-color: rgba(47,123,255,0.18);  color: #6faeff; }
+[data-theme="dark"] .badge--demo_klaar     { background-color: rgba(14,116,144,0.18);  color: #22d3ee; }
+[data-theme="dark"] .badge--benaderd       { background-color: rgba(199,125,0,0.18);   color: #f6a800; }
+[data-theme="dark"] .badge--offerte        { background-color: rgba(91,84,214,0.18);   color: #a09ff5; }
+[data-theme="dark"] .badge--klant          { background-color: rgba(31,157,87,0.18);   color: #34d380; }
+[data-theme="dark"] .badge--verloren       { background-color: rgba(138,150,168,0.18); color: #9fb2cc; }
+[data-theme="dark"] .badge--nietgeinteresseerd { background-color: rgba(181,84,110,0.18); color: #f08aaa; }
+
+/* Elementen die expliciet color: var(--navy) gebruiken */
+[data-theme="dark"] .icon-btn,
+[data-theme="dark"] .text-btn,
+[data-theme="dark"] .tab:hover,
+[data-theme="dark"] .owner-chip.is-senna,
+[data-theme="dark"] .owner-chip.is-jaimy,
+[data-theme="dark"] .lead-value,
+[data-theme="dark"] .tl-actions button { color: var(--ink); }
+
+/* Ghost buttons: donkerblauwe tekst → licht */
+[data-theme="dark"] .btn--ghost { --btn-fg: var(--ink); border-color: var(--line-strong); }
