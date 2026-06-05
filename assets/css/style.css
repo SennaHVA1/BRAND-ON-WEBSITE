@@ -406,7 +406,7 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
 .proj-thumb .corner {
   position: absolute; top: 16px; left: 16px;
   font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.9);
 }
 .proj-body { padding: 22px 24px 26px; border-top: 1px solid var(--line-dark); }
 .proj-body h3 { font-size: 1.25rem; font-weight: 600; }
