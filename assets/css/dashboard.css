@@ -228,3 +228,58 @@ body.modal-lock { overflow: hidden; }
   .modal-actions-right { width: 100%; }
   .modal-actions-right .btn { flex: 1; }
 }
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+/* Icon visibility: moon in light, sun in dark */
+.icon-sun { display: none; }
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="dark"] .icon-sun { display: block; }
+
+[data-theme="dark"] {
+  --tint:        #1a2840;
+  --tint-2:      #111927;
+  --ink:         #ccdaf0;
+  --muted:       #6f8db8;
+  --line:        rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .app-bar {
+  background: rgba(10, 17, 30, 0.94);
+}
+
+[data-theme="dark"] .stat,
+[data-theme="dark"] .lead-card,
+[data-theme="dark"] .modal-card,
+[data-theme="dark"] .modal-head,
+[data-theme="dark"] .tl-dot {
+  background: #162030;
+}
+
+[data-theme="dark"] .search input,
+[data-theme="dark"] .action-bar select,
+[data-theme="dark"] .action-bar input,
+[data-theme="dark"] .field input,
+[data-theme="dark"] .field select,
+[data-theme="dark"] .field textarea {
+  background: #162030;
+  color: var(--ink);
+}
+
+[data-theme="dark"] .search input::placeholder,
+[data-theme="dark"] .action-bar input::placeholder,
+[data-theme="dark"] .field textarea::placeholder,
+[data-theme="dark"] .field input::placeholder {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .copy-btn:hover {
+  background: var(--tint);
+}
+
+[data-theme="dark"] .tl-actions button:hover {
+  background: var(--tint);
+}

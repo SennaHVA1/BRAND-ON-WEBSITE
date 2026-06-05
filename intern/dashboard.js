@@ -8,7 +8,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import {
   collection, addDoc, updateDoc, deleteDoc, doc,
-  onSnapshot, query, orderBy, serverTimestamp, arrayUnion
+  onSnapshot, query, orderBy, serverTimestamp, arrayUnion,
+  getDoc, setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 /* ---------- Pipeline statussen ---------- */
@@ -77,6 +78,11 @@ let unsubscribe = null;
 let openLeadId = null;   // id van lead die in de modal bewerkt wordt
 let editingActId = null; // id van activiteit die bewerkt wordt (of null)
 
+/* ---------- Snel gecachte thema toepassen (voorkomt flits bij laden) ---------- */
+if (localStorage.getItem("brandon_theme") === "dark") {
+  document.documentElement.dataset.theme = "dark";
+}
+
 /* ---------- Elements ---------- */
 const $ = (id) => document.getElementById(id);
 const appLoading = $("appLoading");
@@ -100,14 +106,48 @@ const actDateEl = $("actDate");
 const actCancelBtn = $("actCancel");
 
 /* ===================================================================
+   THEMA (dark mode)
+   =================================================================== */
+function applyTheme(dark) {
+  document.documentElement.dataset.theme = dark ? "dark" : "";
+  localStorage.setItem("brandon_theme", dark ? "dark" : "light");
+  const btn = $("themeBtn");
+  if (btn) {
+    btn.title = dark ? "Licht thema" : "Donker thema";
+    btn.setAttribute("aria-label", dark ? "Licht thema aan/uit" : "Donker thema aan/uit");
+  }
+}
+
+async function loadAndApplyTheme(user) {
+  try {
+    const snap = await getDoc(doc(db, "userPrefs", user.uid));
+    const dark = snap.exists() && snap.data().darkMode === true;
+    applyTheme(dark);
+  } catch (e) {
+    applyTheme(localStorage.getItem("brandon_theme") === "dark");
+  }
+}
+
+$("themeBtn").addEventListener("click", async () => {
+  const dark = document.documentElement.dataset.theme === "dark";
+  applyTheme(!dark);
+  try {
+    await setDoc(doc(db, "userPrefs", auth.currentUser.uid), { darkMode: !dark }, { merge: true });
+  } catch (e) {
+    console.error("Thema opslaan mislukt:", e);
+  }
+});
+
+/* ===================================================================
    AUTH GUARD
    =================================================================== */
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (!user || !isAllowedUser(user)) {
     window.location.replace("login.html");
     return;
   }
   appUser.textContent = user.email;
+  await loadAndApplyTheme(user);
   appLoading.classList.add("hide");
   appMain.hidden = false;
   startLeadsListener();

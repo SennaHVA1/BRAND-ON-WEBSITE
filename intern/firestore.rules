@@ -21,6 +21,11 @@ service cloud.firestore {
       allow read, write: if isAllowed();
     }
 
+    // Gebruikersvoorkeuren (bijv. dark mode) — alleen eigen document
+    match /userPrefs/{userId} {
+      allow read, write: if isAllowed() && request.auth.uid == userId;
+    }
+
     // Alles wat hierboven niet expliciet is toegestaan, blokkeren:
     match /{document=**} {
       allow read, write: if false;
