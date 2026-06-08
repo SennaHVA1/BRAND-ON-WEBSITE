@@ -45,7 +45,13 @@
         <h1 class="app-title">Leads &amp; klanten</h1>
         <p class="app-subtitle">Beheer je pipeline, van eerste lead tot vaste klant.</p>
       </div>
-      <button class="btn" id="newLeadBtn"><span>+ Nieuwe lead</span></button>
+      <div class="app-head-btns">
+        <button class="btn btn--ghost" id="belscriptBtn">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13 1 .37 1.97.72 2.9a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.07 6.07l.92-.92a2 2 0 0 1 2.11-.45c.93.35 1.9.59 2.9.72a2 2 0 0 1 1.72 2z"/></svg>
+          <span>Belscript</span>
+        </button>
+        <button class="btn" id="newLeadBtn"><span>+ Nieuwe lead</span></button>
+      </div>
     </section>
 
     <section class="stats" id="stats"></section>
@@ -145,6 +151,78 @@
 
   <!-- Toast -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===================== BELSCRIPT MODAL ===================== -->
+  <div class="modal" id="belscriptModal" hidden>
+    <div class="modal-overlay" data-close-belscript></div>
+    <div class="modal-card belscript-card" role="dialog" aria-modal="true" aria-labelledby="belscriptTitle">
+      <div class="modal-head">
+        <div class="belscript-head-inner">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.13 1 .37 1.97.72 2.9a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.07 6.07l.92-.92a2 2 0 0 1 2.11-.45c.93.35 1.9.59 2.9.72a2 2 0 0 1 1.72 2z"/></svg>
+          <h2 id="belscriptTitle">Brand-On Belscript</h2>
+        </div>
+        <button class="icon-btn" data-close-belscript aria-label="Sluiten">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="belscript-body">
+
+        <div class="bs-section bs-section--opening">
+          <div class="bs-section-label">Opening</div>
+          <p class="bs-line">"Goedemiddag, spreek ik met de eigenaar van [<em>bedrijfsnaam</em>]?"</p>
+        </div>
+
+        <div class="bs-section bs-section--ja">
+          <div class="bs-section-label">JA</div>
+          <p class="bs-line">"Top, u spreekt met [<em>naam</em>] van Brand-On.</p>
+          <p class="bs-line">Ik bel omdat wij uw online aanwezigheid hebben bekeken en zagen dat er kansen liggen om meer vertrouwen uit te stralen en beter gevonden te worden online.</p>
+          <p class="bs-line">In plaats van zomaar te bellen met een verkooppraatje hebben wij alvast een verbeterde versie van uw website uitgewerkt."</p>
+          <p class="bs-pause">(PAUZE)</p>
+          <p class="bs-line">"We hebben daarbij uw huidige huisstijl, logo, diensten en bedrijfsinformatie verwerkt zodat u direct kunt zien hoe uw bedrijf er online uit zou kunnen zien."</p>
+          <p class="bs-line">"Het is volledig vrijblijvend, maar ik denk dat u positief verrast zult zijn."</p>
+          <p class="bs-line">"Mag ik vragen: wie houdt zich bij jullie bezig met de website en online zichtbaarheid?"</p>
+        </div>
+
+        <div class="bs-section bs-section--interesse">
+          <div class="bs-section-label">Als ze interesse tonen</div>
+          <p class="bs-line">"Perfect. Het enige wat ik vraag is 10 minuten van uw tijd zodat ik de demo kan laten zien. Daarna kunt u zelf bepalen of het interessant is."</p>
+          <p class="bs-line">"Wanneer zou dat uitkomen? Deze week of volgende week?"</p>
+        </div>
+
+        <div class="bs-section bs-section--kosten">
+          <div class="bs-section-label">Als ze vragen wat het kost</div>
+          <p class="bs-line">"Dat hangt af van wat u nodig heeft.</p>
+          <p class="bs-line">Onze websites starten vanaf <strong>€750</strong> voor een professionele website inclusief support.</p>
+          <p class="bs-line">Voor bedrijven die meer willen groeien online hebben we pakketten vanaf <strong>€1500</strong> inclusief uitgebreide SEO-optimalisatie, professionele fotografie en analytics.</p>
+          <p class="bs-line">Maar voordat we over prijzen praten, lijkt het me slimmer dat u eerst ziet wat we al voor uw bedrijf hebben gemaakt."</p>
+        </div>
+
+        <div class="bs-section bs-section--website">
+          <div class="bs-section-label">Als ze al een website hebben</div>
+          <p class="bs-line">"Dat zagen we inderdaad.</p>
+          <p class="bs-line">Daarom hebben we juist gekeken hoe die nóg sterker kan worden.</p>
+          <p class="bs-line">We vragen niet om direct iets te vervangen; we willen alleen laten zien welke verbeteringen mogelijk zijn."</p>
+        </div>
+
+        <div class="bs-section bs-section--geen">
+          <div class="bs-section-label">Als ze geen interesse hebben</div>
+          <p class="bs-line">"Dat is helemaal prima.</p>
+          <p class="bs-line">Mag ik uit nieuwsgierigheid vragen of dat komt omdat u tevreden bent met de huidige website, of omdat dit momenteel geen prioriteit heeft?"</p>
+          <p class="bs-pause">(laat ze praten)</p>
+          <p class="bs-line">"Begrijpelijk. Dan zou ik u toch graag de demo sturen. Als u er niets in ziet hoeft u er verder niets mee te doen."</p>
+        </div>
+
+        <div class="bs-section bs-section--afsluiting">
+          <div class="bs-section-label">Afsluiting afspraak</div>
+          <p class="bs-line">"Top.</p>
+          <p class="bs-line">Dan zet ik de afspraak op [<em>dag/tijd</em>].</p>
+          <p class="bs-line">Ik stuur u direct een bevestiging met de demo-link.</p>
+          <p class="bs-line">Ik ben benieuwd wat u ervan vindt, want we hebben echt geprobeerd uw bedrijf goed neer te zetten."</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <script>
   if (location.protocol === "file:") {

@@ -446,6 +446,24 @@ $("newLeadBtn").addEventListener("click", () => openModal(null));
 modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeModal));
 document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
 
+/* ===================================================================
+   BELSCRIPT MODAL
+   =================================================================== */
+const belscriptModal = $("belscriptModal");
+
+function openBelscript() {
+  belscriptModal.hidden = false;
+  document.body.classList.add("modal-lock");
+}
+function closeBelscript() {
+  belscriptModal.hidden = true;
+  document.body.classList.remove("modal-lock");
+}
+
+$("belscriptBtn").addEventListener("click", openBelscript);
+belscriptModal.querySelectorAll("[data-close-belscript]").forEach((el) => el.addEventListener("click", closeBelscript));
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !belscriptModal.hidden) closeBelscript(); });
+
 leadForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const id = $("leadId").value;

@@ -147,6 +147,10 @@
 .text-btn { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--navy); border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: opacity 0.2s; }
 .text-btn:hover { opacity: 0.6; }
 
+/* App-head button group */
+.app-head-btns { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.app-head-btns .btn { display: inline-flex; align-items: center; gap: 8px; width: auto; }
+
 /* Empty state */
 .empty { text-align: center; padding: 80px 20px; color: var(--muted); }
 .empty .pwr { color: var(--line-strong); display: inline-block; }
@@ -206,6 +210,48 @@ body.modal-lock { overflow: hidden; }
 .tl-actions button { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid transparent; color: var(--muted); transition: background 0.2s, color 0.2s, border-color 0.2s; }
 .tl-actions button:hover { background: #fff; border-color: var(--line-strong); color: var(--navy); }
 .tl-actions button.del:hover { color: #9a2020; border-color: #e6b4b4; }
+
+/* ============================================================
+   BELSCRIPT MODAL
+   ============================================================ */
+.belscript-card { max-width: 760px; }
+.belscript-head-inner { display: flex; align-items: center; gap: 12px; color: var(--navy); }
+.belscript-head-inner svg { flex-shrink: 0; }
+
+.belscript-body { padding: clamp(22px, 4vw, 34px); display: flex; flex-direction: column; gap: 4px; }
+
+.bs-section {
+  border-left: 3px solid var(--line-strong);
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.bs-section--opening  { border-left-color: #2f7bff; background: rgba(47,123,255,0.05); }
+.bs-section--ja       { border-left-color: #1f9d57; background: rgba(31,157,87,0.05); }
+.bs-section--interesse{ border-left-color: #1f9d57; background: rgba(31,157,87,0.05); }
+.bs-section--kosten   { border-left-color: #c77d00; background: rgba(199,125,0,0.06); }
+.bs-section--website  { border-left-color: #5b54d6; background: rgba(91,84,214,0.06); }
+.bs-section--geen     { border-left-color: #b5546e; background: rgba(181,84,110,0.06); }
+.bs-section--afsluiting { border-left-color: #0e7490; background: rgba(14,116,144,0.06); }
+
+.bs-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.bs-line { font-size: 0.95rem; line-height: 1.6; color: var(--ink); margin: 0; }
+.bs-line em { font-style: normal; background: rgba(47,123,255,0.12); color: var(--navy); padding: 0 4px; border-radius: 2px; font-family: var(--font-mono); font-size: 0.88em; }
+.bs-line strong { color: var(--navy); font-weight: 700; }
+.bs-pause {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+  margin: 0;
+}
 
 /* ============================================================
    TOAST
@@ -305,3 +351,16 @@ body.modal-lock { overflow: hidden; }
 
 /* Ghost buttons: donkerblauwe tekst → licht */
 [data-theme="dark"] .btn--ghost { --btn-fg: var(--ink); border-color: var(--line-strong); }
+
+/* Belscript dark mode */
+[data-theme="dark"] .belscript-card { background: #162030; }
+[data-theme="dark"] .belscript-head-inner { color: var(--ink); }
+[data-theme="dark"] .bs-section--opening   { background: rgba(47,123,255,0.10); }
+[data-theme="dark"] .bs-section--ja        { background: rgba(31,157,87,0.10); }
+[data-theme="dark"] .bs-section--interesse { background: rgba(31,157,87,0.10); }
+[data-theme="dark"] .bs-section--kosten    { background: rgba(199,125,0,0.10); }
+[data-theme="dark"] .bs-section--website   { background: rgba(91,84,214,0.10); }
+[data-theme="dark"] .bs-section--geen      { background: rgba(181,84,110,0.10); }
+[data-theme="dark"] .bs-section--afsluiting{ background: rgba(14,116,144,0.10); }
+[data-theme="dark"] .bs-line em  { background: rgba(47,123,255,0.2); color: #6faeff; }
+[data-theme="dark"] .bs-line strong { color: #6faeff; }
