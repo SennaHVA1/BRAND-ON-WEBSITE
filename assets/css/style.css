@@ -755,3 +755,147 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
   .cta-band .h-display { font-size: clamp(1.6rem, 6.8vw, 2.3rem); }
   .hero h1 { overflow-wrap: break-word; }
 }
+
+/* ============================================================
+   NAV: Gratis concept — highlighted link
+   ============================================================ */
+.nav-links .nav-concept { color: #7eb6ff !important; }
+.nav-links .nav-concept::after { background: #7eb6ff !important; }
+.site-header.scrolled .nav-links .nav-concept { color: var(--accent) !important; }
+
+/* ============================================================
+   CONCEPT PROMO BAND (homepage)
+   ============================================================ */
+.concept-band { background: var(--accent); position: relative; overflow: hidden; }
+.concept-band::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+}
+.concept-band-inner {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+  padding: clamp(32px, 4.5vw, 56px) 0;
+}
+.concept-band-left { flex: 1; min-width: 260px; color: #fff; }
+.concept-band-tag {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.45); padding: 6px 16px;
+  background: rgba(255,255,255,0.12); display: inline-block; margin-bottom: 16px;
+}
+.concept-band-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
+}
+.concept-band-sub {
+  font-size: 0.98rem; opacity: 0.82; margin-top: 12px; line-height: 1.6; max-width: 54ch;
+}
+.concept-band-cta { flex-shrink: 0; }
+.concept-band .btn {
+  --btn-bg: #fff;
+  --btn-fg: var(--accent);
+  border-color: #fff;
+}
+.concept-band .btn::after { background: var(--navy); }
+.concept-band .btn:hover { color: #fff; }
+
+/* ============================================================
+   CONCEPT PAGE — feature cards
+   ============================================================ */
+.concept-feats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 0; }
+.concept-feat {
+  border: 1px solid var(--line); background: var(--white);
+  padding: clamp(28px, 4vw, 44px);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.concept-feat-icon {
+  width: 50px; height: 50px; border: 1px solid var(--line-strong);
+  display: grid; place-items: center; color: var(--navy); flex-shrink: 0;
+}
+.concept-feat-num {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+}
+.concept-feat h3 {
+  font-family: var(--font-display); font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight: 600; letter-spacing: -0.01em; line-height: 1.15;
+}
+.concept-feat p { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+
+/* Color picker row */
+.color-pick-row { display: flex; align-items: center; gap: 12px; }
+.color-pick-row input[type="color"] {
+  width: 52px; height: 52px; flex-shrink: 0;
+  border: 1px solid var(--line-strong); background: #fff;
+  padding: 4px; cursor: pointer;
+}
+.color-pick-row input[type="text"] { flex: 1; }
+
+/* File upload drop zone */
+.file-drop {
+  border: 2px dashed var(--line-strong);
+  background: var(--tint-2);
+  transition: border-color 0.25s, background 0.25s;
+  overflow: hidden;
+}
+.file-drop:hover { border-color: var(--navy); background: var(--tint); }
+.file-drop.dragover { border-color: var(--accent); background: rgba(47,123,255,0.06); }
+.file-drop input[type="file"] { display: none; }
+
+.file-drop-inner {
+  padding: clamp(20px, 3vw, 32px) 20px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px; text-align: center; cursor: pointer;
+  color: var(--muted);
+}
+.file-drop-inner svg { color: var(--line-strong); margin-bottom: 4px; transition: color 0.25s; }
+.file-drop:hover .file-drop-inner svg { color: var(--navy); }
+.file-drop.dragover .file-drop-inner svg { color: var(--accent); }
+.file-drop-inner p { font-size: 0.95rem; line-height: 1.45; }
+.file-drop-inner p strong { color: var(--navy); }
+.file-drop-inner .file-hint { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; }
+
+.file-selected {
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  border-top: 2px solid var(--accent);
+  background: rgba(47,123,255,0.05);
+}
+.file-selected svg { color: var(--navy); flex-shrink: 0; }
+.file-selected-name { flex: 1; font-family: var(--font-mono); font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink); }
+.file-remove-btn {
+  width: 28px; height: 28px; display: grid; place-items: center;
+  border: 1px solid var(--line-strong); color: var(--muted);
+  flex-shrink: 0; font-size: 1.1rem; line-height: 1;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.file-remove-btn:hover { background: #fdecec; color: #9a2020; border-color: #e6b4b4; }
+
+.file-progress {
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 8px;
+  border-top: 1px solid var(--line); background: #fff;
+}
+.file-progress-track {
+  height: 3px; background: var(--line); position: relative; overflow: hidden;
+}
+.file-progress-bar {
+  position: absolute; left: 0; top: 0; height: 100%;
+  background: var(--accent); width: 0%;
+  transition: width 0.25s;
+}
+.file-progress-label { font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .concept-feats { grid-template-columns: 1fr; }
+  .concept-band-cta .btn { width: 100%; justify-content: center; }
+}
+@media (max-width: 560px) {
+  .concept-band-inner { gap: 24px; }
+}
