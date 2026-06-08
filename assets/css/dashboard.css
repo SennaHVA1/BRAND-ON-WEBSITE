@@ -306,6 +306,8 @@ body.modal-lock { overflow: hidden; }
   background: #162030;
 }
 
+[data-theme="dark"] .tl-dot { color: var(--ink); }
+
 [data-theme="dark"] .search input,
 [data-theme="dark"] .action-bar select,
 [data-theme="dark"] .action-bar input,
@@ -355,6 +357,10 @@ body.modal-lock { overflow: hidden; }
 /* Belscript dark mode */
 [data-theme="dark"] .belscript-card { background: #162030; }
 [data-theme="dark"] .belscript-head-inner { color: var(--ink); }
+
+/* Timeline actieknoppen hover */
+[data-theme="dark"] .tl-actions button:hover { background: var(--tint); color: var(--ink); border-color: var(--line-strong); }
+[data-theme="dark"] .tl-item.is-editing { background: var(--tint); }
 [data-theme="dark"] .bs-section--opening   { background: rgba(47,123,255,0.10); }
 [data-theme="dark"] .bs-section--ja        { background: rgba(31,157,87,0.10); }
 [data-theme="dark"] .bs-section--interesse { background: rgba(31,157,87,0.10); }
