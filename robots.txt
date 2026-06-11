@@ -3,4 +3,7 @@
 # Het interne leadbeheer (/intern/) is afgeschermd voor zoekmachines.
 
 User-agent: *
+Allow: /
 Disallow: /intern/
+
+Sitemap: https://brand-on.org/sitemap.xml
