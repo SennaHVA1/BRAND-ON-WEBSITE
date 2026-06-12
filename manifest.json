@@ -1,0 +1,16 @@
+{
+  "name": "Brand-On",
+  "short_name": "Brand-On",
+  "description": "Webdesign studio voor het Nederlandse MKB",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#002250",
+  "icons": [
+    {
+      "src": "png_icon_favicon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
