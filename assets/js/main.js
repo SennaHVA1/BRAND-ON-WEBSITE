@@ -117,6 +117,11 @@
 
       let pages = 0;
 
+      // Laatst berekende samenstelling, gedeeld met "Verwerk in mijn bericht"
+      let currentLines = [];
+      let currentTotal = PKG.starter;
+      let currentPkg = 'starter';
+
       const stepperVal = pageStepper ? pageStepper.querySelector('.val') : null;
 
       const getPkg = () => {
@@ -169,10 +174,61 @@
           ).join('');
         }
         if (totalEl) totalEl.textContent = euro(total);
+
+        currentLines = lines;
+        currentTotal = total;
+        currentPkg = pkg;
       }
 
       pkgInputs.forEach((i) => i.addEventListener('change', render));
       addonInputs.forEach((i) => i.addEventListener('change', render));
+
+      /* "Verwerk in mijn bericht": samenstelling in het contactformulier zetten */
+      const fillBtn = root.querySelector('[data-fill-message]');
+      if (fillBtn) {
+        let lastBlock = '';
+        fillBtn.addEventListener('click', (e) => {
+          const form = document.querySelector('[data-contact-form]');
+          if (!form) return; // geen formulier op deze pagina → laat anchor gewoon scrollen
+
+          const textarea = form.querySelector('textarea[name="bericht"]');
+          const select = form.querySelector('select[name="pakket"]');
+
+          const blockLines = currentLines
+            .map((l) => '• ' + l.label + ': ' + l.value)
+            .join('\n');
+          const block =
+            'Mijn samenstelling via de prijscalculator:\n' +
+            blockLines +
+            '\n\nGeschat totaal: ' + euro(currentTotal) + ' (excl. BTW, indicatie)';
+
+          if (select) {
+            const map = { starter: 'starter', pro: 'professioneel' };
+            const opt = map[currentPkg];
+            if (opt) select.value = opt;
+          }
+
+          if (textarea) {
+            let val = textarea.value;
+            if (lastBlock && val.indexOf(lastBlock) !== -1) {
+              val = val.replace(lastBlock, block); // eerdere samenstelling bijwerken
+            } else {
+              val = block + (val.trim() ? '\n\n' + val : '\n\n');
+            }
+            textarea.value = val;
+            lastBlock = block;
+          }
+
+          // scrollen + focus naar het formulier
+          e.preventDefault();
+          const target = document.querySelector('#naam');
+          if (target) {
+            const top = target.getBoundingClientRect().top + window.scrollY - 70;
+            window.scrollTo({ top, behavior: 'smooth' });
+            try { target.focus({ preventScroll: true }); } catch (err) {}
+          }
+        });
+      }
 
       if (pageStepper && stepperVal) {
         pageStepper.querySelector('[data-step="-"]').addEventListener('click', () => {
