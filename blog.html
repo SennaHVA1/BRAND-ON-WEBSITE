@@ -70,9 +70,30 @@
       },
       {
         "@type": "BlogPosting",
+        "headline": "Website laten maken in Purmerend: wat lokale ondernemers moeten weten",
+        "url": "https://brand-on.org/blog-website-laten-maken-purmerend",
+        "datePublished": "2026-06-18",
+        "author": { "@type": "Organization", "name": "Brand-On" }
+      },
+      {
+        "@type": "BlogPosting",
         "headline": "Website laten maken in de Beemster: wat lokale ondernemers moeten weten",
         "url": "https://brand-on.org/blog-website-laten-maken-beemster",
         "datePublished": "2026-06-15",
+        "author": { "@type": "Organization", "name": "Brand-On" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Website laten maken in Castricum: wat lokale ondernemers moeten weten",
+        "url": "https://brand-on.org/blog-website-laten-maken-castricum",
+        "datePublished": "2026-06-12",
+        "author": { "@type": "Organization", "name": "Brand-On" }
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Website laten maken in Limmen: wat lokale ondernemers moeten weten",
+        "url": "https://brand-on.org/blog-website-laten-maken-limmen",
+        "datePublished": "2026-06-10",
         "author": { "@type": "Organization", "name": "Brand-On" }
       }
     ]
@@ -141,8 +162,16 @@
     <!-- ===================== POST LIST ===================== -->
     <section class="section bg-white">
       <div class="wrap">
-        <div class="blog-grid">
-          <a class="blog-card blog-card--fotografie" href="/blog-website-klaarmaken-hoogseizoen" data-reveal>
+        <div class="blog-filter" data-reveal role="group" aria-label="Filter blogartikelen op categorie">
+          <button type="button" class="blog-filter__btn is-active" data-filter="all" aria-pressed="true">Alle</button>
+          <button type="button" class="blog-filter__btn" data-filter="lokaal" aria-pressed="false">Lokaal</button>
+          <button type="button" class="blog-filter__btn" data-filter="tips" aria-pressed="false">Tips</button>
+          <button type="button" class="blog-filter__btn" data-filter="prijsgids" aria-pressed="false">Prijsgids</button>
+          <button type="button" class="blog-filter__btn" data-filter="branche" aria-pressed="false">Branche</button>
+          <button type="button" class="blog-filter__btn" data-filter="ondernemen" aria-pressed="false">Online ondernemen</button>
+        </div>
+        <div class="blog-grid" id="blogGrid">
+          <a class="blog-card blog-card--fotografie" href="/blog-website-klaarmaken-hoogseizoen" data-category="tips" data-reveal>
             <div class="blog-card__cover">
               <span class="blog-card__cat">Tips</span>
               <span class="blog-card__num" aria-hidden="true">01</span>
@@ -154,7 +183,7 @@
               <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
             </div>
           </a>
-          <a class="blog-card blog-card--prijzen" href="/blog-hoeveel-kost-een-website-mkb" data-reveal>
+          <a class="blog-card blog-card--prijzen" href="/blog-hoeveel-kost-een-website-mkb" data-category="prijsgids" data-reveal>
             <div class="blog-card__cover">
               <span class="blog-card__cat">Prijsgids</span>
               <span class="blog-card__num" aria-hidden="true">02</span>
@@ -166,7 +195,7 @@
               <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
             </div>
           </a>
-          <a class="blog-card blog-card--hosting" href="/blog-website-eenmanszaak-bouw" data-reveal>
+          <a class="blog-card blog-card--hosting" href="/blog-website-eenmanszaak-bouw" data-category="branche" data-reveal>
             <div class="blog-card__cover">
               <span class="blog-card__cat">Branche</span>
               <span class="blog-card__num" aria-hidden="true">03</span>
@@ -178,7 +207,7 @@
               <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
             </div>
           </a>
-          <a class="blog-card blog-card--design" href="/blog-instagram-geen-vervanging-website" data-reveal>
+          <a class="blog-card blog-card--design" href="/blog-instagram-geen-vervanging-website" data-category="ondernemen" data-reveal>
             <div class="blog-card__cover">
               <span class="blog-card__cat">Online ondernemen</span>
               <span class="blog-card__num" aria-hidden="true">04</span>
@@ -190,10 +219,22 @@
               <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
             </div>
           </a>
-          <a class="blog-card blog-card--seo" href="/blog-website-laten-maken-beemster" data-reveal>
+          <a class="blog-card blog-card--hosting" href="/blog-website-laten-maken-purmerend" data-category="lokaal" data-reveal>
             <div class="blog-card__cover">
               <span class="blog-card__cat">Lokaal</span>
               <span class="blog-card__num" aria-hidden="true">05</span>
+            </div>
+            <div class="blog-card__body">
+              <span class="blog-card__meta">18 juni 2026 · 6 min lezen</span>
+              <h2 class="blog-card__title">Website laten maken in Purmerend: wat lokale ondernemers moeten weten</h2>
+              <p class="blog-card__excerpt">Hoe je als ondernemer in Purmerend en Waterland online opvalt tussen de concurrentie en klanten uit de buurt bereikt.</p>
+              <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a class="blog-card blog-card--seo" href="/blog-website-laten-maken-beemster" data-category="lokaal" data-reveal>
+            <div class="blog-card__cover">
+              <span class="blog-card__cat">Lokaal</span>
+              <span class="blog-card__num" aria-hidden="true">06</span>
             </div>
             <div class="blog-card__body">
               <span class="blog-card__meta">15 juni 2026 · 6 min lezen</span>
@@ -202,7 +243,32 @@
               <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
             </div>
           </a>
+          <a class="blog-card blog-card--fotografie" href="/blog-website-laten-maken-castricum" data-category="lokaal" data-reveal>
+            <div class="blog-card__cover">
+              <span class="blog-card__cat">Lokaal</span>
+              <span class="blog-card__num" aria-hidden="true">07</span>
+            </div>
+            <div class="blog-card__body">
+              <span class="blog-card__meta">12 juni 2026 · 6 min lezen</span>
+              <h2 class="blog-card__title">Website laten maken in Castricum: wat lokale ondernemers moeten weten</h2>
+              <p class="blog-card__excerpt">Hoe je als ondernemer in Castricum zowel je vaste klanten als bezoekers van de kust online bereikt.</p>
+              <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a class="blog-card blog-card--design" href="/blog-website-laten-maken-limmen" data-category="lokaal" data-reveal>
+            <div class="blog-card__cover">
+              <span class="blog-card__cat">Lokaal</span>
+              <span class="blog-card__num" aria-hidden="true">08</span>
+            </div>
+            <div class="blog-card__body">
+              <span class="blog-card__meta">10 juni 2026 · 6 min lezen</span>
+              <h2 class="blog-card__title">Website laten maken in Limmen: wat lokale ondernemers moeten weten</h2>
+              <p class="blog-card__excerpt">Hoe je als ondernemer in Limmen en de bollenstreek online gevonden wordt door klanten uit de buurt.</p>
+              <span class="text-link">Lees het artikel <span aria-hidden="true">↗</span></span>
+            </div>
+          </a>
         </div>
+        <p class="blog-empty" id="blogEmpty" hidden>Geen artikelen in deze categorie. <button type="button" class="blog-filter__reset" data-filter="all">Toon alle artikelen</button></p>
       </div>
     </section>
 
@@ -258,5 +324,35 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    // Blogfilter op categorie
+    (function () {
+      var buttons = document.querySelectorAll('.blog-filter__btn');
+      var cards = document.querySelectorAll('#blogGrid .blog-card');
+      var empty = document.getElementById('blogEmpty');
+      if (!buttons.length || !cards.length) return;
+
+      function applyFilter(filter) {
+        var visible = 0;
+        cards.forEach(function (card) {
+          var match = filter === 'all' || card.getAttribute('data-category') === filter;
+          card.hidden = !match;
+          if (match) visible++;
+        });
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-filter') === filter;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        if (empty) empty.hidden = visible !== 0;
+      }
+
+      document.addEventListener('click', function (e) {
+        var trigger = e.target.closest('[data-filter]');
+        if (!trigger) return;
+        applyFilter(trigger.getAttribute('data-filter'));
+      });
+    })();
+  </script>
 </body>
 </html>

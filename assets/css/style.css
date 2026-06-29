@@ -907,11 +907,54 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
 /* ============================================================
    BLOG — overview cards
    ============================================================ */
+.blog-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.blog-filter__btn {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.blog-filter__btn:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.blog-filter__btn.is-active {
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.blog-empty {
+  margin-top: 8px;
+  color: var(--muted);
+}
+.blog-filter__reset {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 28px;
 }
+.blog-card[hidden] { display: none; }
 
 .blog-card {
   --card-accent: var(--accent);
