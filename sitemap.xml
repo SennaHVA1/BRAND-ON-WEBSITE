@@ -32,8 +32,14 @@
   </url>
   <url>
     <loc>https://brand-on.org/blog</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://brand-on.org/blog-lokale-seo-purmerend</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>

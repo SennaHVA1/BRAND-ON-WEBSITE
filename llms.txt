@@ -24,6 +24,7 @@ Diensten: website design en development (maatwerk, responsive, snel ladend), pro
 ## Blog
 
 - [Blogoverzicht](https://brand-on.org/blog): alle artikelen over websites, SEO en online ondernemen
+- [Lokale SEO in Purmerend](https://brand-on.org/blog-lokale-seo-purmerend): stappenplan om hoger in Google te komen als lokale ondernemer
 - [Hoeveel kost een website voor een mkb-bedrijf?](https://brand-on.org/blog-hoeveel-kost-een-website-mkb): heldere prijsgids
 - [Klaar voor het hoogseizoen?](https://brand-on.org/blog-website-klaarmaken-hoogseizoen): je website voorbereiden op meer bezoekers
 - [Website voor een eenmanszaak in de bouw](https://brand-on.org/blog-website-eenmanszaak-bouw): wat er op een bouwwebsite hoort
