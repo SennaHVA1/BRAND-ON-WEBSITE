@@ -472,6 +472,10 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
 .price-note { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); margin-top: 28px; text-align: center; }
 .price-note a { color: var(--navy); border-bottom: 1px solid currentColor; }
 
+/* byline (blogposts) */
+.byline { margin-top: 14px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.03em; }
+.byline a { color: var(--navy); border-bottom: 1px solid currentColor; }
+
 /* pakketvergelijking (tarieven) */
 .compare-wrap { overflow-x: auto; }
 .compare { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.96rem; }

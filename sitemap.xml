@@ -8,7 +8,13 @@
   </url>
   <url>
     <loc>https://brand-on.org/tarieven</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://brand-on.org/logo-laten-maken</loc>
+    <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -97,28 +103,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://brand-on.org/blog-website-laten-maken-purmerland</loc>
+    <loc>https://brand-on.org/blog-website-laten-maken-waterland</loc>
     <lastmod>2026-07-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://brand-on.org/blog-website-laten-maken-ilpendam</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://brand-on.org/blog-website-laten-maken-den-ilp</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://brand-on.org/blog-website-laten-maken-neck</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://brand-on.org/gratis-concept</loc>

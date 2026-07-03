@@ -11,6 +11,7 @@ Diensten: website design en development (maatwerk, responsive, snel ladend), pro
 - [Home](https://brand-on.org/): webdesignstudio voor het Nederlandse MKB
 - [Over ons](https://brand-on.org/over-ons): het team en de werkwijze van Brand-On
 - [Tarieven](https://brand-on.org/tarieven): pakketten, prijzen en wat erin zit
+- [Logo laten maken](https://brand-on.org/logo-laten-maken): logo en huisstijl voor een vaste prijs van €250
 - [Projecten](https://brand-on.org/projecten): portfolio van opgeleverde websites
 - [Gratis concept](https://brand-on.org/gratis-concept): vraag een vrijblijvende live demo aan op basis van je huisstijl
 - [Contact](https://brand-on.org/contact): neem contact op, binnen één werkdag antwoord
@@ -34,10 +35,7 @@ Diensten: website design en development (maatwerk, responsive, snel ladend), pro
 - [Website laten maken in Beemster](https://brand-on.org/blog-website-laten-maken-beemster): lokale gids voor ondernemers
 - [Website laten maken in Castricum (blog)](https://brand-on.org/blog-website-laten-maken-castricum): lokale gids voor ondernemers
 - [Website laten maken in Limmen (blog)](https://brand-on.org/blog-website-laten-maken-limmen): lokale gids voor ondernemers
-- [Website laten maken in Purmerland](https://brand-on.org/blog-website-laten-maken-purmerland): lokale gids voor ondernemers
-- [Website laten maken in Ilpendam](https://brand-on.org/blog-website-laten-maken-ilpendam): lokale gids voor ondernemers
-- [Website laten maken in Den Ilp](https://brand-on.org/blog-website-laten-maken-den-ilp): lokale gids voor ondernemers
-- [Website laten maken in Neck](https://brand-on.org/blog-website-laten-maken-neck): lokale gids voor ondernemers
+- [Website laten maken in Waterland](https://brand-on.org/blog-website-laten-maken-waterland): gids voor ondernemers in Ilpendam, Den Ilp, Purmerland en Neck
 
 ## Contact
 
