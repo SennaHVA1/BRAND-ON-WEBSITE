@@ -472,6 +472,15 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
 .price-note { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); margin-top: 28px; text-align: center; }
 .price-note a { color: var(--navy); border-bottom: 1px solid currentColor; }
 
+/* pakketvergelijking (tarieven) */
+.compare-wrap { overflow-x: auto; }
+.compare { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.96rem; }
+.compare th, .compare td { padding: 14px 18px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.compare thead th { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line-strong); }
+.compare tbody th { font-weight: 600; color: var(--navy); }
+.compare .yes { color: var(--accent); font-weight: 600; }
+.compare .no { color: var(--muted); }
+
 /* pricing teaser (homepage) */
 .teaser-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
 .teaser {
@@ -709,6 +718,10 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
    ============================================================ */
 [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); transition-delay: var(--reveal-delay, 0s); }
 [data-reveal].is-visible { opacity: 1; transform: none; }
+/* LCP-elementen in de hero (titel, lead, hero-afbeelding) mogen niet op JS wachten */
+.hero h1[data-reveal],
+.hero .lead[data-reveal],
+.hero .hero-media[data-reveal] { opacity: 1; transform: none; transition: none; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   [data-reveal] { opacity: 1; transform: none; }
