@@ -2,14 +2,25 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBGQGJ6BKY"></script>
+  <!-- Google tag (gtag.js) — geladen na cookietoestemming (AVG / Consent Mode v2) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     // Standaard geen toestemming, totdat de bezoeker akkoord gaat (AVG / Consent Mode v2)
     gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
-    try { if (localStorage.getItem('cookie-consent') === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+    window.loadGtag = function () {
+      if (document.getElementById('gtag-js')) return;
+      var s = document.createElement('script');
+      s.id = 'gtag-js'; s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZBGQGJ6BKY';
+      document.head.appendChild(s);
+    };
+    try {
+      if (localStorage.getItem('cookie-consent') === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        window.loadGtag();
+      }
+    } catch (e) {}
     gtag('js', new Date());
     gtag('config', 'G-ZBGQGJ6BKY');
   </script>
@@ -68,12 +79,9 @@
     "priceRange": "€€"
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preload" as="image" href="assets/img/logo_blauw.png">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.min.css?v=20260704">
   <link rel="icon" type="image/png" href="png_icon_favicon.png">
   <link rel="apple-touch-icon" href="png_icon_favicon.png">
   <link rel="manifest" href="manifest.json">
@@ -84,8 +92,8 @@
   <header class="site-header">
     <div class="wrap">
       <a class="brand-logo" href="/" aria-label="Brand-On — home">
-        <img class="logo-blauw" src="assets/img/logo_blauw.png" alt="Brand-On logo - webdesign studio Nederland" width="400" height="300">
-        <img class="logo-wit" src="assets/img/logo_wit.png" alt="Brand-On logo" aria-hidden="true" width="400" height="300">
+        <img class="logo-blauw" src="assets/img/logo_blauw.png" srcset="assets/img/logo_blauw-200.png 200w, assets/img/logo_blauw-330.png 330w, assets/img/logo_blauw.png 400w" sizes="187px" alt="Brand-On logo - webdesign studio Nederland" width="400" height="300">
+        <img class="logo-wit" src="assets/img/logo_wit.png" srcset="assets/img/logo_wit-200.png 200w, assets/img/logo_wit-330.png 330w, assets/img/logo_wit.png 400w" sizes="187px" alt="Brand-On logo" aria-hidden="true" width="400" height="300">
       </a>
       <nav class="nav-links" aria-label="Hoofdmenu">
         <a href="/">Home</a>
@@ -223,7 +231,7 @@
           <a class="proj" href="https://onemancrew.nl/" target="_blank" rel="noopener noreferrer" data-reveal>
             <div class="proj-thumb">
               <span class="corner">NL / Video</span>
-              <img src="assets/img/Thumbnails/Brand-on_Thumbnail_ONEMANCREW.jpg" srcset="assets/img/Thumbnails/Brand-on_Thumbnail_ONEMANCREW-650.jpg 650w, assets/img/Thumbnails/Brand-on_Thumbnail_ONEMANCREW.jpg 1300w" sizes="(max-width: 700px) 100vw, 650px" alt="Website voor ONEMANCREW, video-productiebedrijf — gemaakt door Brand-On" width="1300" height="1040" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;">
+              <img src="assets/img/Thumbnails/Brand-on_Thumbnail_ONEMANCREW.jpg" srcset="assets/img/Thumbnails/Brand-on_Thumbnail_ONEMANCREW-650.jpg 650w, assets/img/Thumbnails/Brand-on_Thumbnail_ONEMANCREW.jpg 1300w" sizes="(max-width: 860px) 90vw, (max-width: 1240px) 30vw, 368px" alt="Website voor ONEMANCREW, video-productiebedrijf — gemaakt door Brand-On" width="1300" height="1040" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;">
               <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
             </div>
             <div class="proj-body">
@@ -235,7 +243,7 @@
           <a class="proj" href="https://edficient.nl/" target="_blank" rel="noopener noreferrer" data-reveal style="--reveal-delay:.1s">
             <div class="proj-thumb">
               <span class="corner">NL / Projectmanagement</span>
-              <img src="assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg" srcset="assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT-650.jpg 650w, assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg 1300w" sizes="(max-width: 700px) 100vw, 650px" alt="Website voor EDFICIENT, projectmanagementbureau — gemaakt door Brand-On" width="1300" height="1040" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;">
+              <img src="assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg" srcset="assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT-650.jpg 650w, assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg 1300w" sizes="(max-width: 860px) 90vw, (max-width: 1240px) 30vw, 368px" alt="Website voor EDFICIENT, projectmanagementbureau — gemaakt door Brand-On" width="1300" height="1040" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;">
               <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
             </div>
             <div class="proj-body">
@@ -247,7 +255,7 @@
           <a class="proj" href="https://tekenbureauwinter.nl/" target="_blank" rel="noopener noreferrer" data-reveal style="--reveal-delay:.2s">
             <div class="proj-thumb">
               <span class="corner">NL / Tekenbureau</span>
-              <img src="assets/img/Thumbnails/Brand-on_Thumbnail_TEKENBUREAUWINTER.jpg" srcset="assets/img/Thumbnails/Brand-on_Thumbnail_TEKENBUREAUWINTER-650.jpg 650w, assets/img/Thumbnails/Brand-on_Thumbnail_TEKENBUREAUWINTER.jpg 1350w" sizes="(max-width: 700px) 100vw, 650px" alt="Website voor Tekenbureau Winter — gemaakt door Brand-On" width="1350" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;">
+              <img src="assets/img/Thumbnails/Brand-on_Thumbnail_TEKENBUREAUWINTER.jpg" srcset="assets/img/Thumbnails/Brand-on_Thumbnail_TEKENBUREAUWINTER-650.jpg 650w, assets/img/Thumbnails/Brand-on_Thumbnail_TEKENBUREAUWINTER.jpg 1350w" sizes="(max-width: 860px) 90vw, (max-width: 1240px) 30vw, 368px" alt="Website voor Tekenbureau Winter — gemaakt door Brand-On" width="1350" height="1080" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9;">
               <span class="proj-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></span>
             </div>
             <div class="proj-body">
@@ -422,6 +430,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20260704"></script>
 </body>
 </html>

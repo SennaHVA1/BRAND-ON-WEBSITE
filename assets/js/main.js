@@ -301,8 +301,9 @@
 
     const choose = (value) => {
       try { localStorage.setItem('cookie-consent', value); } catch (e) {}
-      if (value === 'accepted' && typeof window.gtag === 'function') {
-        window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      if (value === 'accepted') {
+        if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: 'granted' });
+        if (typeof window.loadGtag === 'function') window.loadGtag();
       }
       banner.classList.remove('is-visible');
       setTimeout(() => banner.remove(), 500);
