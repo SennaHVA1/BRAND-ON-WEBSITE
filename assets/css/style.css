@@ -518,6 +518,14 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
 .byline { margin-top: 14px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); letter-spacing: 0.03em; }
 .byline a { color: var(--navy); border-bottom: 1px solid currentColor; }
 
+.author-card { margin-top: 18px; display: flex; align-items: center; gap: 14px; }
+.author-card__photo { width: 46px; height: 46px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid var(--line-strong); }
+.author-card__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.author-card__name { font-weight: 600; }
+.author-card__name a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.author-card__name a:hover { border-bottom-color: currentColor; }
+.author-card__meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.03em; margin-top: 2px; }
+
 /* pakketvergelijking (tarieven) */
 .compare-wrap { overflow-x: auto; }
 .compare { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.96rem; }
