@@ -766,6 +766,12 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
 .legal a { color: var(--accent); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 .legal strong { color: var(--ink); font-weight: 600; }
 .legal .updated { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.03em; margin-top: 0; }
+.legal figure { margin: 32px 0 0; }
+.legal figure img { width: 100%; height: auto; border-radius: 16px; display: block; }
+.legal figcaption { margin-top: 10px; font-size: 0.86rem; color: var(--muted); }
+.legal .fig-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.legal .fig-duo figcaption { grid-column: 1 / -1; margin-top: -4px; }
+@media (max-width: 560px) { .legal .fig-duo { grid-template-columns: 1fr; } }
 
 /* ============================================================
    REVEAL ANIMATION
