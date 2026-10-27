@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) — geladen na cookietoestemming (AVG / Consent Mode v2) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    // Standaard geen toestemming, totdat de bezoeker akkoord gaat (AVG / Consent Mode v2)
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    window.loadGtag = function () {
+      if (document.getElementById('gtag-js')) return;
+      var s = document.createElement('script');
+      s.id = 'gtag-js'; s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZBGQGJ6BKY';
+      document.head.appendChild(s);
+    };
+    try {
+      if (localStorage.getItem('cookie-consent') === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        window.loadGtag();
+      }
+    } catch (e) {}
+    gtag('js', new Date());
+    gtag('config', 'G-ZBGQGJ6BKY');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website voor een voetbalvereniging: Kwiek '78 | Brand-On</title>
+  <meta name="description" content="Een nieuwe website voor voetbalvereniging Kwiek '78 uit Avenhorn. Lees wat we bouwden, van programma en uitslagen tot vrijwilligersdiensten en sponsoring.">
+  <link rel="canonical" href="https://brand-on.org/blog-website-voetbalvereniging-kwiek78">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Senna Hogendoorn">
+  <meta property="og:title" content="Website voor een voetbalvereniging: zo bouwden we Kwiek '78">
+  <meta property="og:description" content="Wat we bouwden voor v.v. Kwiek '78 uit Avenhorn, en waar elke sportclub op moet letten bij een nieuwe website.">
+  <meta property="og:url" content="https://brand-on.org/blog-website-voetbalvereniging-kwiek78">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://brand-on.org/assets/img/kwiek78-website.jpg">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:site_name" content="Brand-On">
+  <meta property="article:published_time" content="2026-10-27">
+  <meta property="article:author" content="Senna Hogendoorn">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Website voor een voetbalvereniging: zo bouwden we Kwiek '78">
+  <meta name="twitter:description" content="Wat we bouwden voor v.v. Kwiek '78 uit Avenhorn, en waar elke sportclub op moet letten bij een nieuwe website.">
+  <meta name="twitter:image" content="https://brand-on.org/assets/img/kwiek78-website.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Website voor een voetbalvereniging: zo bouwden we Kwiek '78",
+    "description": "Wat we bouwden voor v.v. Kwiek '78 uit Avenhorn, en waar elke sportclub op moet letten bij een nieuwe website.",
+    "image": "https://brand-on.org/assets/img/kwiek78-website.jpg",
+    "datePublished": "2026-10-27",
+    "dateModified": "2026-10-27",
+    "inLanguage": "nl-NL",
+    "wordCount": 980,
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://brand-on.org/blog-website-voetbalvereniging-kwiek78" },
+    "author": {
+      "@type": "Person",
+      "name": "Senna Hogendoorn",
+      "jobTitle": "Development, Security & Hosting",
+      "worksFor": { "@type": "Organization", "name": "Brand-On", "url": "https://brand-on.org/" }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Brand-On",
+      "url": "https://brand-on.org/",
+      "logo": { "@type": "ImageObject", "url": "https://brand-on.org/assets/img/logo_blauw.png", "width": 400, "height": 300 }
+    },
+    "about": {
+      "@type": "SportsClub",
+      "name": "v.v. Kwiek '78",
+      "url": "https://kwiek78.nl/",
+      "address": { "@type": "PostalAddress", "streetAddress": "Het Veer 92", "postalCode": "1633 DH", "addressLocality": "Avenhorn", "addressCountry": "NL" }
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://brand-on.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://brand-on.org/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Website voor een voetbalvereniging", "item": "https://brand-on.org/blog-website-voetbalvereniging-kwiek78" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Maken jullie ook websites voor sportverenigingen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja. Voor voetbalvereniging Kwiek '78 uit Avenhorn bouwden we een complete clubsite met programma, uitslagen, teampagina's, vrijwilligersdiensten en sponsoring. Of je nu een voetbalclub, hockeyclub of tennisvereniging bent: we kijken eerst wat jouw leden en vrijwilligers nodig hebben." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat moet er op de website van een voetbalclub staan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In elk geval het wedstrijdprogramma, de uitslagen en standen, een pagina per team, het rooster voor vrijwilligersdiensten, informatie over lid worden en een plek voor sponsoren. Daarnaast nieuws, contactgegevens en de route naar het sportpark." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat kost een website voor een vereniging?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Onze websites beginnen bij 750 euro voor het Starter pakket. Een clubsite met veel teams en functies is meestal maatwerk. We maken eerst een gratis concept, zodat je vooraf ziet wat je krijgt en wat het kost." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kunnen vrijwilligers de website zelf bijhouden?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dat is precies het doel. Nieuws plaatsen of een dienst aanpassen moet zonder technische kennis kunnen. Wat niet zelf hoeft, zoals hosting, updates en beveiliging, regelen wij." }
+      }
+    ]
+  }
+  </script>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.min.css?v=20260707">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand-logo" href="/" aria-label="Brand-On — home">
+        <img class="logo-blauw" src="assets/img/logo_blauw.png" srcset="assets/img/logo_blauw-200.png 200w, assets/img/logo_blauw-330.png 330w, assets/img/logo_blauw.png 400w" sizes="187px" alt="Brand-On logo, webdesign studio Noord-Holland" width="400" height="300">
+        <img class="logo-wit" src="assets/img/logo_wit.png" srcset="assets/img/logo_wit-200.png 200w, assets/img/logo_wit-330.png 330w, assets/img/logo_wit.png 400w" sizes="187px" alt="Brand-On logo" aria-hidden="true" width="400" height="300">
+      </a>
+      <nav class="nav-links" aria-label="Hoofdmenu">
+        <a href="/">Home</a>
+        <a href="/over-ons">Over ons</a>
+        <a href="/tarieven">Tarieven</a>
+        <a href="/projecten">Projecten</a>
+        <a href="/blog">Blog</a>
+        <a href="/gratis-concept" class="nav-concept">Gratis concept</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <a class="btn nav-cta" href="/contact"><span>Start je project</span></a>
+      <button class="nav-toggle" aria-label="Menu openen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== ARTICLE HERO ===================== -->
+    <section class="hero page-hero">
+      <div class="hero-bg">
+        <div class="grid"></div>
+        <div class="glow"></div>
+      </div>
+      <div class="wrap">
+        <div class="hero-inner hero-inner--split">
+          <div class="hero-copy">
+          <span class="crumb" data-reveal><a href="/blog" style="color:inherit;text-decoration:none">Blog</a> · Branche</span>
+          <h1 class="h-display" data-reveal style="--reveal-delay:.08s;margin-top:20px">Website voor een<br>voetbalvereniging</h1>
+          <p class="lead" data-reveal style="--reveal-delay:.16s">Voetbalvereniging Kwiek '78 uit Avenhorn heeft een nieuwe website, gebouwd door Brand-On. In dit artikel lees je wat we gemaakt hebben, waarom we bepaalde keuzes maakten en wat andere sportclubs daaruit kunnen meenemen.</p>
+          <div class="author-card" data-reveal style="--reveal-delay:.2s">
+            <div class="author-card__photo"><img src="assets/img/senna_foto.webp" alt="Senna Hogendoorn" width="92" height="92" loading="lazy"></div>
+            <div>
+              <div class="author-card__name">Geschreven door <a href="/over-ons">Senna</a></div>
+              <div class="author-card__meta">27 oktober 2026</div>
+            </div>
+          </div>
+          </div>
+          <div class="hero-media" data-reveal style="--reveal-delay:.2s">
+            <img class="hero-media__img" src="assets/img/kwiek78-website.webp" alt="De nieuwe website van voetbalvereniging Kwiek '78 uit Avenhorn, gemaakt door Brand-On" width="1200" height="675" loading="eager" fetchpriority="high">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ARTICLE BODY ===================== -->
+    <section class="section bg-white">
+      <div class="wrap">
+        <div class="legal measure" data-reveal>
+          <p>Een voetbalclub draait op vrijwilligers. Trainers, scheidsrechters, kantinediensten, de mensen achter de ledenadministratie: allemaal mensen die hun vrije tijd in de club steken. Een clubwebsite moet hen werk uit handen nemen, niet extra werk geven. Met dat uitgangspunt begonnen we aan de nieuwe site van Kwiek '78.</p>
+
+          <h2>Over Kwiek '78</h2>
+          <p><a href="https://kwiek78.nl/" target="_blank" rel="noopener noreferrer">v.v. Kwiek '78</a> is de voetbalvereniging van Avenhorn, opgericht in 1978 en thuis op Sportpark Het Veer. De club heeft meerdere seniorenteams, een vrouwenteam, twee 35+ teams, een zaalteam en een flinke jeugdafdeling met dertien teams. Dat betekent elk weekend veel wedstrijden, veel ouders die willen weten waar hun kind moet spelen en veel vrijwilligers die moeten weten wanneer ze aan de beurt zijn.</p>
+
+          <h2>Wat we gebouwd hebben</h2>
+          <p>Bij veel clubs staat informatie verspreid over losse pagina's, groepsapps en Facebook. Voor Kwiek '78 wilden we één plek waar alles samenkomt. Bovenaan de homepage staan drie vragen die leden het vaakst hebben, elk met één klik bereikbaar:</p>
+          <ul>
+            <li><strong>Programma: wie speelt wanneer?</strong> Het complete wedstrijdprogramma, te filteren op team en op thuis of uit.</li>
+            <li><strong>Uitslagen: hoe is het afgelopen?</strong> Uitslagen en standen per competitie, overzichtelijk bij elkaar.</li>
+            <li><strong>Diensten: wanneer ben ik aan de beurt?</strong> Het rooster voor vrijwilligersdiensten, zoals de kantine, op een eigen pagina.</li>
+          </ul>
+          <p>Daaronder staat direct de eerstvolgende wedstrijd. Wie op zaterdagochtend de site opent, ziet meteen waar het om draait.</p>
+
+          <h3>Teams, nieuws en clubinformatie</h3>
+          <p>Elk team, van de senioren tot de jongste jeugd, heeft een eigen pagina. Onder Club vind je het bestuur en de commissies, de agenda, de verjaardagen, de ereleden en het informatiebulletin met huisregels en contributie. Het nieuws brengt clubberichten samen met de video's van Kwiek Inside, zodat er altijd iets nieuws te zien is.</p>
+
+          <h3>Lid worden en sponsoring</h3>
+          <p>Een vereniging leeft van nieuwe leden en sponsoren. Daarom staat de knop Word lid prominent in beeld, met een gratis proeftraining als laagdrempelige eerste stap. Sponsoren krijgen een eigen plek, inclusief uitleg over het Minutenspel. De clubwinkel is met één klik bereikbaar vanuit het menu.</p>
+
+          <h3>Snel, mobiel en netjes geregeld</h3>
+          <p>De meeste leden bekijken de site op hun telefoon, langs de lijn of in de kantine. De site is daarom eerst voor mobiel ontworpen, met een duidelijk menu en snelle laadtijden. Toegankelijkheid kreeg ook aandacht, bijvoorbeeld met een link waarmee je met het toetsenbord direct naar de inhoud springt. En omdat een club met persoonsgegevens van leden werkt, staan de privacyverklaring en AVG-informatie keurig op de site.</p>
+
+          <h2>Vormgeving in clubkleuren</h2>
+          <p>Het logo van Kwiek '78 is een stuk clubgeschiedenis, dus daar bleven we vanaf. We bouwden de vormgeving eromheen: diep blauw als basis, grote krachtige koppen en echte teamfoto's in plaats van stockbeeld. Het resultaat voelt als Kwiek, maar dan van nu.</p>
+
+          <h2>Wat andere sportclubs hiervan kunnen leren</h2>
+          <ul>
+            <li><strong>Begin bij de vragen van je leden.</strong> Wie speelt wanneer, hoe is het afgelopen, wanneer moet ik helpen? Als die antwoorden direct te vinden zijn, krijgt het bestuur minder appjes.</li>
+            <li><strong>Maak lid worden makkelijk.</strong> Een gratis proeftraining met één duidelijke knop werkt beter dan een formulier dat ergens diep in het menu zit.</li>
+            <li><strong>Geef sponsoren zichtbaarheid.</strong> Een sponsor die zich gezien voelt, blijft langer. Een verzorgde website helpt ook bij het werven van nieuwe sponsoren.</li>
+            <li><strong>Houd het onderhoud klein.</strong> Vrijwilligers wisselen. Een site die zonder technische kennis bij te houden is, blijft actueel, ook als de webmaster van vorig jaar stopt.</li>
+          </ul>
+          <p>Ook voor een vereniging geldt dat je gevonden wilt worden. Ouders die in Avenhorn of omgeving komen wonen, zoeken op "voetbalclub Avenhorn" of "voetballen in Koggenland". Hoe je daar hoger in komt, lees je in ons artikel over <a href="/blog-lokale-seo-purmerend">lokale SEO</a>.</p>
+
+          <h2>Ook een nieuwe website voor jouw club?</h2>
+          <p>Brand-On is een webdesignstudio uit Purmerend, met onze ontwerper in Limmen. Avenhorn ligt daar mooi tussenin, en dat geldt voor de meeste clubs in West-Friesland en de Zaanstreek. Bekijk de site van Kwiek '78 en ons andere werk op <a href="/projecten">de projectenpagina</a>, of vraag direct een <a href="/gratis-concept">gratis concept</a> aan. Dan bouwen we vrijblijvend een eerste versie van jullie nieuwe clubsite.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section bg-tint">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Veelgestelde vragen</span>
+          <h2 class="h2" style="margin-top:20px">Website voor een sportvereniging</h2>
+        </div>
+        <div class="legal" data-reveal>
+          <h3>Maken jullie ook websites voor sportverenigingen?</h3>
+          <p>Ja. Voor voetbalvereniging Kwiek '78 uit Avenhorn bouwden we een complete clubsite met programma, uitslagen, teampagina's, vrijwilligersdiensten en sponsoring. Of je nu een voetbalclub, hockeyclub of tennisvereniging bent: we kijken eerst wat jouw leden en vrijwilligers nodig hebben.</p>
+
+          <h3>Wat moet er op de website van een voetbalclub staan?</h3>
+          <p>In elk geval het wedstrijdprogramma, de uitslagen en standen, een pagina per team, het rooster voor vrijwilligersdiensten, informatie over lid worden en een plek voor sponsoren. Daarnaast nieuws, contactgegevens en de route naar het sportpark.</p>
+
+          <h3>Wat kost een website voor een vereniging?</h3>
+          <p>Onze websites beginnen bij 750 euro voor het Starter pakket. Een clubsite met veel teams en functies is meestal maatwerk. We maken eerst een gratis concept, zodat je vooraf ziet wat je krijgt en wat het kost. Op de <a href="/tarieven">tarievenpagina</a> zie je wat er in elk pakket zit.</p>
+
+          <h3>Kunnen vrijwilligers de website zelf bijhouden?</h3>
+          <p>Dat is precies het doel. Nieuws plaatsen of een dienst aanpassen moet zonder technische kennis kunnen. Wat niet zelf hoeft, zoals hosting, updates en beveiliging, regelen wij.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VERDER LEZEN ===================== -->
+    <section class="section bg-white section--tight">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Verder lezen</span>
+          <h2 class="h2" style="margin-top:20px">Gerelateerde artikelen</h2>
+        </div>
+        <div class="legal" data-reveal>
+          <ul>
+            <li><a href="/blog-website-laten-maken-heerhugowaard">Klantverhaal: website voor Tekenbureau Winter</a></li>
+            <li><a href="/blog-instagram-geen-vervanging-website">Waarom Instagram geen vervanging is voor een website</a></li>
+            <li><a href="/blog-hoeveel-kost-een-website-mkb">Hoeveel kost een website?</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="section bg-navy cta-band">
+      <div class="wrap">
+        <span class="eyebrow eyebrow--plain" data-reveal style="justify-content:center">Zit je in het bestuur van een club?</span>
+        <h2 class="h-display" data-reveal style="--reveal-delay:.06s;margin-top:18px">Laten we jullie club<br>aanzetten.</h2>
+        <p class="lead" data-reveal style="--reveal-delay:.12s">Benieuwd hoe jullie clubsite eruit kan zien? Vraag een gratis concept aan, helemaal vrijblijvend. Je krijgt binnen één werkdag een persoonlijk antwoord.</p>
+        <div class="hero-actions" data-reveal style="--reveal-delay:.18s">
+          <a class="btn btn--on-navy" href="/gratis-concept"><span>Vraag een gratis concept aan</span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="btn btn--ghost-navy" href="/projecten"><span>Bekijk onze projecten</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/img/logo_wit.png" alt="Brand-On logo" width="400" height="300">
+          <p class="tagline">Jouw online aanwezigheid, onze passie.</p>
+          <a class="footer-social" href="https://www.instagram.com/brand.on.webdesign/" target="_blank" rel="noopener" aria-label="Volg Brand-On op Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+        <div class="footer-col">
+          <h4>Navigatie</h4>
+          <a href="/">Home</a>
+          <a href="/over-ons">Over ons</a>
+          <a href="/tarieven">Tarieven</a>
+          <a href="/projecten">Projecten</a>
+          <a href="/blog">Blog</a>
+          <a href="/gratis-concept" style="color:#7eb6ff">Gratis concept</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:info@brand-on.org">info@brand-on.org</a>
+          <a href="tel:+31628637074">+31 6 28637074</a>
+          <a href="/contact">Start je project</a>
+          <span style="display:block;padding:7px 0;color:#c6d4ec">Saint Helenabaai 31<br>1448 SK Purmerend · Noord-Holland</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Brand-On. Alle rechten voorbehouden.</p>
+        <a class="footer-legal" href="/privacy">Privacybeleid</a>
+        <p>Jouw website. Jouw visitekaartje.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260704"></script>
+</body>
+</html>
