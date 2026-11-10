@@ -77,7 +77,7 @@
   </script>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-latin.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.min.css?v=20261027">
+  <link rel="stylesheet" href="assets/css/style.min.css?v=20261110">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="manifest.json">
@@ -96,10 +96,10 @@
         <a href="/tarieven">Tarieven</a>
         <a href="/projecten">Projecten</a>
         <a href="/blog">Blog</a>
-        <a href="/gratis-concept" class="nav-concept">Gratis concept</a>
+        <a href="/gratis-concept" class="nav-concept">Gratis demo</a>
         <a href="/contact">Contact</a>
       </nav>
-      <a class="btn nav-cta" href="/contact"><span>Start je project</span></a>
+      <a class="btn nav-cta" href="/gratis-concept"><span>Gratis demo</span></a>
       <button class="nav-toggle" aria-label="Menu openen" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -128,6 +128,7 @@
         <div class="split split--contact">
           <div data-reveal>
             <span class="eyebrow">Stuur een bericht</span>
+            <p class="form-lead">Nog niet toe aan een pakket kiezen? <a href="/gratis-concept" style="color:var(--accent);font-weight:600">Vraag eerst een gratis demo aan</a>, dan zie je vooraf wat je krijgt.</p>
             <form class="form" data-contact-form style="margin-top:28px" novalidate>
               <input type="hidden" name="access_key" value="d73e4c5e-e423-4e5d-9b3e-83c8d19033ae">
               <input type="hidden" name="subject" value="Nieuw bericht via Brand-On contactformulier">
@@ -156,6 +157,7 @@
               <div class="field">
                 <label for="pakket">Pakketkeuze</label>
                 <select id="pakket" name="pakket">
+                  <option value="weet_ik_nog_niet">Weet ik nog niet</option>
                   <option value="starter">Starter — €750</option>
                   <option value="professioneel">Professioneel — €1500</option>
                   <option value="maatwerk">Maatwerk</option>
@@ -299,7 +301,7 @@
           <a href="/tarieven">Tarieven</a>
           <a href="/projecten">Projecten</a>
           <a href="/blog">Blog</a>
-          <a href="/gratis-concept" style="color:#7eb6ff">Gratis concept</a>
+          <a href="/gratis-concept" style="color:#7eb6ff">Gratis demo</a>
           <a href="/contact">Contact</a>
         </div>
         <div class="footer-col">

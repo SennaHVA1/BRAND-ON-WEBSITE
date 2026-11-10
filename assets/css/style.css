@@ -272,9 +272,9 @@ p { text-wrap: pretty; }
 
 /* nav CTA adapts to header state */
 .nav-cta { padding: 12px 20px; }
-.site-header .nav-cta { background: transparent; border-color: rgba(255,255,255,0.42); color: #fff; }
-.site-header .nav-cta::after { background: #fff; }
-.site-header .nav-cta:hover { color: var(--navy); }
+.site-header .nav-cta { background: #fff; border-color: #fff; color: var(--navy); }
+.site-header .nav-cta::after { background: var(--accent); }
+.site-header .nav-cta:hover { color: #fff; }
 .site-header.scrolled .nav-cta { background: var(--navy); border-color: var(--navy); color: #fff; }
 .site-header.scrolled .nav-cta::after { background: var(--accent); }
 .site-header.scrolled .nav-cta:hover { color: #fff; }
@@ -807,7 +807,9 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
   .nav-links a::after { left: 0; right: auto; width: 100%; bottom: 6px; }
   .site-header.scrolled .nav-links a { color: #fff; }
   .site-header.scrolled .nav-links a.active { color: #fff; }
-  .nav-cta { display: none; }
+  /* demo-knop blijft op mobiel zichtbaar naast het menu-icoon */
+  .site-header .wrap { gap: 10px; }
+  .site-header .nav-cta { width: auto; margin-left: auto; padding: 10px 14px; font-size: 0.7rem; white-space: nowrap; }
   .nav-toggle { display: block; }
 
   .split, .team-grid, .price-grid, .teaser-grid, .calc, .proj-grid, .field-row { grid-template-columns: 1fr; }
@@ -840,6 +842,16 @@ body.menu-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45d
 .nav-links .nav-concept { color: #7eb6ff !important; }
 .nav-links .nav-concept::after { background: #7eb6ff !important; }
 .site-header.scrolled .nav-links .nav-concept { color: var(--accent) !important; }
+/* op desktop staat de demo al als knop in de header, de losse link is dan dubbel */
+@media (min-width: 861px) { .nav-links .nav-concept { display: none; } }
+
+/* ============================================================
+   GRATIS DEMO pagina: bewijs naast en onder het formulier
+   ============================================================ */
+.aside-quote { border-top: 1px solid var(--line); padding-top: 18px; }
+.aside-quote blockquote { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; line-height: 1.45; color: var(--navy); }
+.aside-quote .who { margin-top: 12px; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--muted); }
+.form-lead { margin-top: 16px; color: var(--muted); max-width: 52ch; }
 
 /* ============================================================
    CONCEPT PROMO BAND (homepage)
