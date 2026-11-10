@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <!-- Google tag (gtag.js) — geladen na cookietoestemming (AVG / Consent Mode v2) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    // Standaard geen toestemming, totdat de bezoeker akkoord gaat (AVG / Consent Mode v2)
+    gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    window.loadGtag = function () {
+      if (document.getElementById('gtag-js')) return;
+      var s = document.createElement('script');
+      s.id = 'gtag-js'; s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZBGQGJ6BKY';
+      document.head.appendChild(s);
+    };
+    try {
+      if (localStorage.getItem('cookie-consent') === 'accepted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        window.loadGtag();
+      }
+    } catch (e) {}
+    gtag('js', new Date());
+    gtag('config', 'G-ZBGQGJ6BKY');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website voor een zzp'er of consultant: EDficient | Brand-On</title>
+  <meta name="description" content="Heb je als freelancer, interim-manager of consultant een website nodig, en wat zet je erop? Met het voorbeeld van EDficient: één pagina die binnen twee weken live stond.">
+  <link rel="canonical" href="https://brand-on.org/blog-website-zzp-consultant">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Senna Hogendoorn">
+  <meta property="og:title" content="Website voor een zzp'er of consultant: zo bouwden we EDficient">
+  <meta property="og:description" content="Wat we bouwden voor freelance projectmanager EDficient, en wat een zzp'er in zakelijke dienstverlening echt nodig heeft van een website.">
+  <meta property="og:url" content="https://brand-on.org/blog-website-zzp-consultant">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://brand-on.org/assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:site_name" content="Brand-On">
+  <meta property="article:published_time" content="2026-11-10">
+  <meta property="article:author" content="Senna Hogendoorn">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Website voor een zzp'er of consultant: zo bouwden we EDficient">
+  <meta name="twitter:description" content="Wat we bouwden voor freelance projectmanager EDficient, en wat een zzp'er in zakelijke dienstverlening echt nodig heeft van een website.">
+  <meta name="twitter:image" content="https://brand-on.org/assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Website voor een zzp'er of consultant: zo bouwden we EDficient",
+    "description": "Wat we bouwden voor freelance projectmanager EDficient, en wat een zzp'er in zakelijke dienstverlening echt nodig heeft van een website.",
+    "image": "https://brand-on.org/assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg",
+    "datePublished": "2026-11-10",
+    "dateModified": "2026-11-10",
+    "inLanguage": "nl-NL",
+    "wordCount": 607,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://brand-on.org/blog-website-zzp-consultant"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Senna Hogendoorn",
+      "jobTitle": "Development, Security & Hosting",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Brand-On",
+        "url": "https://brand-on.org/"
+      }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Brand-On",
+      "url": "https://brand-on.org/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://brand-on.org/assets/img/logo_blauw.png",
+        "width": 400,
+        "height": 300
+      }
+    },
+    "about": {
+      "@type": "Organization",
+      "name": "EDficient",
+      "url": "https://edficient.nl/"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://brand-on.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://brand-on.org/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Website voor een zzp'er of consultant",
+        "item": "https://brand-on.org/blog-website-zzp-consultant"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Heb ik als zzp'er een website nodig als ik al LinkedIn heb?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LinkedIn is een goed begin, maar een eigen site laat zien dat je een bedrijf voert. Opdrachtgevers zoeken je op voordat ze bellen, en op je eigen site bepaal je zelf wat ze als eerste zien."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is één pagina genoeg voor een freelancer of consultant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vaak wel. Voor EDficient bouwden we een onepager met een persoonlijke opening, drie pijlers, succesverhalen en een contactformulier. Heb je meerdere diensten of wil je bloggen, dan zijn losse pagina's handiger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe snel kan mijn website live staan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "De site van EDficient stond binnen twee weken live. Hoe snel het bij jou gaat, hangt vooral af van hoe snel teksten en beeld beschikbaar zijn."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat kost een website voor een zzp'er?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Het Starter pakket kost 750 euro en bevat een complete website tot vijf pagina's met een jaar hosting en support. Je kunt eerst een gratis demo aanvragen, zodat je vooraf ziet wat je krijgt."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-sans-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.min.css?v=20261110">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand-logo" href="/" aria-label="Brand-On — home">
+        <img class="logo-blauw" src="assets/img/logo_blauw.png" srcset="assets/img/logo_blauw-200.png 200w, assets/img/logo_blauw-330.png 330w, assets/img/logo_blauw.png 400w" sizes="187px" alt="Brand-On logo, webdesign studio Noord-Holland" width="400" height="300">
+        <img class="logo-wit" src="assets/img/logo_wit.png" srcset="assets/img/logo_wit-200.png 200w, assets/img/logo_wit-330.png 330w, assets/img/logo_wit.png 400w" sizes="187px" alt="Brand-On logo" aria-hidden="true" width="400" height="300">
+      </a>
+      <nav class="nav-links" aria-label="Hoofdmenu">
+        <a href="/">Home</a>
+        <a href="/over-ons">Over ons</a>
+        <a href="/tarieven">Tarieven</a>
+        <a href="/projecten">Projecten</a>
+        <a href="/blog">Blog</a>
+        <a href="/gratis-concept" class="nav-concept">Gratis demo</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <a class="btn nav-cta" href="/gratis-concept"><span>Gratis demo</span></a>
+      <button class="nav-toggle" aria-label="Menu openen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== ARTICLE HERO ===================== -->
+    <section class="hero page-hero">
+      <div class="hero-bg">
+        <div class="grid"></div>
+        <div class="glow"></div>
+      </div>
+      <div class="wrap">
+        <div class="hero-inner hero-inner--split">
+          <div class="hero-copy">
+          <span class="crumb" data-reveal><a href="/blog" style="color:inherit;text-decoration:none">Blog</a> · Branche</span>
+          <h1 class="h-display" data-reveal style="--reveal-delay:.08s;margin-top:20px">Website voor een<br>zzp'er of consultant</h1>
+          <p class="lead" data-reveal style="--reveal-delay:.16s">Voor EDficient, freelance projectmanager in marketing en communicatie, maakten we de website en de branding. In dit artikel lees je wat een zzp'er, interim-manager of consultant echt nodig heeft van een website, en wat je gerust kunt weglaten.</p>
+          <div class="author-card" data-reveal style="--reveal-delay:.2s">
+            <div class="author-card__photo"><img src="assets/img/senna_foto.webp" alt="Senna Hogendoorn" width="92" height="92" loading="lazy"></div>
+            <div>
+              <div class="author-card__name">Geschreven door <a href="/over-ons">Senna</a></div>
+              <div class="author-card__meta">10 november 2026</div>
+            </div>
+          </div>
+          </div>
+          <div class="hero-media" data-reveal style="--reveal-delay:.2s">
+            <img class="hero-media__img" src="assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg" srcset="assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT-650.jpg 650w, assets/img/Thumbnails/Brand-on_Thumbnail_EDFICIENT.jpg 1350w" sizes="(max-width: 860px) 92vw, 560px" alt="De website van EDficient, freelance projectmanagement in marketing en communicatie, gemaakt door Brand-On" width="1350" height="1080" loading="eager" fetchpriority="high" style="aspect-ratio:auto;height:auto;object-fit:contain;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ARTICLE BODY ===================== -->
+    <section class="section bg-white">
+      <div class="wrap">
+        <div class="legal measure" data-reveal>
+          <p>Als zelfstandige in zakelijke dienstverlening krijg je de meeste opdrachten via je netwerk. Toch zoekt bijna elke opdrachtgever je even op voordat hij belt. Wat hij dan vindt, bepaalt mee of dat telefoontje er komt. Een LinkedIn-profiel is een begin, maar een eigen site laat zien dat je een bedrijf bent en niet iemand tussen twee banen.</p>
+
+          <h2>Over EDficient</h2>
+          <p><a href="https://edficient.nl/" target="_blank" rel="noopener noreferrer">EDficient</a> is het bedrijf van een freelance projectmanager voor marketing- en communicatieprojecten. Denk aan congressen, beurzen, klantenevenementen en video- en animatieproducties, waarbij hij tijdelijk aansluit bij het team van de opdrachtgever. Zijn belofte bestaat uit drie woorden: zorgeloos, resultaatgericht en met plezier.</p>
+
+          <h2>Wat we gebouwd hebben</h2>
+          <p>We maakten de website en de branding. De site bestaat bewust uit één pagina. Een opdrachtgever die een projectmanager zoekt, wil in een minuut weten wie je bent, wat je doet en of je het eerder gedaan hebt.</p>
+          <ul>
+            <li><strong>Een persoonlijke opening.</strong> De site begint met "Hoi, ik ben EDficient" en in twee zinnen wat hij voor een team betekent.</li>
+            <li><strong>Drie pijlers.</strong> Zorgeloos, resultaatgericht en plezier hebben elk een eigen blok, in dezelfde volgorde als het menu.</li>
+            <li><strong>Succesverhalen.</strong> Eerder werk per soort project, met beeld en video: congressen, beurzen, klantenevenementen, interne evenementen en sportevenementen.</li>
+            <li><strong>Een kort formulier.</strong> Naam, e-mail en bericht onder de kop "Laten we kennismaken".</li>
+          </ul>
+          <p>De klant zei erover: "Brand-On dacht met mij mee in plaats van alleen een opdracht uit te voeren. Binnen twee weken stond er een site waar we trots op zijn, en als er iets is, hebben we zo iemand aan de lijn."</p>
+
+          <h2>Wat heeft een zzp'er nodig van een website?</h2>
+          <h3>Eén pagina is vaak genoeg</h3>
+          <p>Je hoeft geen tien pagina's te vullen. Voor een freelancer met één duidelijke dienst werkt een goede onepager beter dan een site met lege subpagina's. Wat erop moet: wie je bent, wat je doet, voor wie, bewijs dat je het kunt en hoe iemand je bereikt.</p>
+
+          <h3>Bewijs boven beloftes</h3>
+          <p>Elke consultant noemt zichzelf resultaatgericht. Het verschil maak je met voorbeelden: projecten die je geleid hebt, opdrachtgevers die je mag noemen, een citaat van iemand met wie je gewerkt hebt. Mag je namen niet noemen, beschrijf dan het soort project en de omvang.</p>
+
+          <h3>Jezelf laten zien</h3>
+          <p>Een opdrachtgever huurt jou in, geen bureau. Een goede foto en teksten in je eigen toon doen meer dan zakelijke standaardzinnen. Schrijf zoals je in een kennismakingsgesprek praat.</p>
+
+          <h3>Een eigen domein en e-mailadres</h3>
+          <p>Een offerte vanaf een eigen domein komt anders binnen dan een vanaf een gratis mailadres. Het kost weinig en hoort bij de basis, net als een site die veilig en snel is. Bij ons zit de hosting en het onderhoud in het pakket, zodat je er zelf geen omkijken naar hebt.</p>
+
+          <h3>Vindbaar op je eigen naam</h3>
+          <p>Je hoeft niet bovenaan te staan op "projectmanager". Je wilt wel dat iemand die jouw naam of bedrijfsnaam intikt, direct op je eigen site uitkomt en niet op een oud profiel of een naamgenoot. Dat regel je met een eigen site, een Google Bedrijfsprofiel en een link vanaf je LinkedIn.</p>
+
+          <h2>Wat kost het?</h2>
+          <p>Voor de meeste zzp'ers is het Starter pakket van 750 euro ruim voldoende: een complete site tot vijf pagina's, inclusief een jaar hosting en support. Wil je ook een logo en huisstijl, dan komt daar <a href="/logo-laten-maken">250 euro</a> bij. Een uitgebreid overzicht van wat een site kost en waarom, staat in onze <a href="/blog-hoeveel-kost-een-website-mkb">prijsgids</a>.</p>
+
+          <h2>Ook een eigen website als zelfstandige?</h2>
+          <p>Brand-On is een webdesignstudio uit Purmerend, met onze ontwerper in Limmen. We werken voor zzp'ers en mkb-bedrijven in heel Noord-Holland en daarbuiten. Bekijk ons werk op <a href="/projecten">de projectenpagina</a>, of vraag een <a href="/gratis-concept">gratis demo</a> aan. Dan bouwen we vrijblijvend een eerste versie van jouw site.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section bg-tint">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Veelgestelde vragen</span>
+          <h2 class="h2" style="margin-top:20px">Website voor een zzp'er of consultant</h2>
+        </div>
+        <div class="legal" data-reveal>
+          <h3>Heb ik als zzp'er een website nodig als ik al LinkedIn heb?</h3>
+          <p>LinkedIn is een goed begin, maar een eigen site laat zien dat je een bedrijf voert. Opdrachtgevers zoeken je op voordat ze bellen, en op je eigen site bepaal je zelf wat ze als eerste zien.</p>
+
+          <h3>Is één pagina genoeg voor een freelancer of consultant?</h3>
+          <p>Vaak wel. Voor EDficient bouwden we een onepager met een persoonlijke opening, drie pijlers, succesverhalen en een contactformulier. Heb je meerdere diensten of wil je bloggen, dan zijn losse pagina's handiger.</p>
+
+          <h3>Hoe snel kan mijn website live staan?</h3>
+          <p>De site van EDficient stond binnen twee weken live. Hoe snel het bij jou gaat, hangt vooral af van hoe snel teksten en beeld beschikbaar zijn.</p>
+
+          <h3>Wat kost een website voor een zzp'er?</h3>
+          <p>Het Starter pakket kost 750 euro en bevat een complete website tot vijf pagina's met een jaar hosting en support. Je kunt eerst een gratis demo aanvragen, zodat je vooraf ziet wat je krijgt.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VERDER LEZEN ===================== -->
+    <section class="section bg-white section--tight">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <span class="eyebrow">Verder lezen</span>
+          <h2 class="h2" style="margin-top:20px">Gerelateerde artikelen</h2>
+        </div>
+        <div class="legal" data-reveal>
+          <ul>
+            <li><a href="/blog-hoeveel-kost-een-website-mkb">Hoeveel kost een website?</a></li>
+            <li><a href="/blog-website-videograaf">Website voor een videograaf</a></li>
+            <li><a href="/blog-logo-laten-maken-purmerend">Logo laten maken: kosten en proces</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="section bg-navy cta-band">
+      <div class="wrap">
+        <span class="eyebrow eyebrow--plain" data-reveal style="justify-content:center">Werk je als zelfstandige?</span>
+        <h2 class="h-display" data-reveal style="--reveal-delay:.06s;margin-top:18px">Laten we jouw bedrijf<br>aanzetten.</h2>
+        <p class="lead" data-reveal style="--reveal-delay:.12s">Benieuwd hoe jouw site eruit kan zien? Vraag een gratis demo aan, helemaal vrijblijvend. Je krijgt binnen één werkdag een persoonlijk antwoord.</p>
+        <div class="hero-actions" data-reveal style="--reveal-delay:.18s">
+          <a class="btn btn--on-navy" href="/gratis-concept"><span>Vraag een gratis demo aan</span><span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="btn btn--ghost-navy" href="/projecten"><span>Bekijk onze projecten</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/img/logo_wit.png" alt="Brand-On logo" width="400" height="300">
+          <p class="tagline">Jouw online aanwezigheid, onze passie.</p>
+          <a class="footer-social" href="https://www.instagram.com/brand.on.webdesign/" target="_blank" rel="noopener" aria-label="Volg Brand-On op Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+        <div class="footer-col">
+          <h4>Navigatie</h4>
+          <a href="/">Home</a>
+          <a href="/over-ons">Over ons</a>
+          <a href="/tarieven">Tarieven</a>
+          <a href="/projecten">Projecten</a>
+          <a href="/blog">Blog</a>
+          <a href="/gratis-concept" style="color:#7eb6ff">Gratis demo</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:info@brand-on.org">info@brand-on.org</a>
+          <a href="tel:+31628637074">+31 6 28637074</a>
+          <a href="/contact">Start je project</a>
+          <span style="display:block;padding:7px 0;color:#c6d4ec">Saint Helenabaai 31<br>1448 SK Purmerend · Noord-Holland</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Brand-On. Alle rechten voorbehouden.</p>
+        <a class="footer-legal" href="/privacy">Privacybeleid</a>
+        <p>Jouw website. Jouw visitekaartje.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260704"></script>
+</body>
+</html>
